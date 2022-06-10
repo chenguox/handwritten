@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input type="text" />
+    <button id="cancel">取消</button>
+
+    <script src="./test.js"></script>
+    <script>
+      const inputEl = document.querySelector('input')
+
+      let count = 0
+      const inputChange = function (event) {
+        console.log('执行次数：', ++count, '\nevent:', event, '\nthis:', this)
+        return '你好啊'
+      }
+
+      // 没有进行防抖
+      // inputEl.oninput = inputChange
+      // 防抖
+      // const debounceChange = debounce(inputChange, 2000, true)
+      // inputEl.oninput = debounceChange
+      // 函数的返回值(回调函数)
+      // const debounceChange = debounce(inputChange, 2000, true, (res) => {
+      //   console.log('返回值：', res)
+      // })
+      // inputEl.oninput = debounceChange
+
+      // 函数的返回值(promise)
+      const debounceChange = debounce(inputChange, 2000, true)
+      const tempCallback = function () {
+        debounceChange().then((res) => {
+          console.log('Promise返回值：', res)
+        })
+      }
+      inputEl.oninput = tempCallback
+
+      // 取消功能
+      const cancelBtn = document.querySelector('#cancel')
+      cancelBtn.onclick = function () {
+        debounceChange.cancel()
+      }
+    </script>
+  </body>
+</html>
