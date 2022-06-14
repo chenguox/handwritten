@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>节流的实现</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button id="cancel">取消</button>
+
+    <!-- <script src="./test.js"></script> -->
+    <script src="./v3-leading实现.js"></script>
+    <script>
+      const inputEl = document.querySelector('input')
+
+      let count = 0
+      const inputChange = function (event) {
+        console.log('执行次数：', ++count, '\nthis:', this, '\n$envent:', event)
+      }
+
+      // 没有进行节流
+      // inputEl.oninput = inputChange
+      // 节流的基本实现
+      inputEl.oninput = throttle(inputChange, 2000, {
+        leading: false,
+        tailing: true,
+      })
+    </script>
+  </body>
+</html>
