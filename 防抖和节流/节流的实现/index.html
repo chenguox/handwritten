@@ -11,22 +11,56 @@
     <button id="cancel">取消</button>
 
     <!-- <script src="./test.js"></script> -->
-    <script src="./v3-leading实现.js"></script>
+    <script src="./test.js"></script>
     <script>
       const inputEl = document.querySelector('input')
 
       let count = 0
       const inputChange = function (event) {
         console.log('执行次数：', ++count, '\nthis:', this, '\n$envent:', event)
+        return '这是返回的结果'
       }
 
       // 没有进行节流
       // inputEl.oninput = inputChange
       // 节流的基本实现
-      inputEl.oninput = throttle(inputChange, 2000, {
+      // inputEl.oninput = throttle(inputChange, 2000, {
+      //   leading: false,
+      //   tailing: true,
+      // })
+
+      // 回调函数返回值
+      // throttleChange = throttle(
+      //   inputChange,
+      //   2000,
+      //   {
+      //     leading: false,
+      //     tailing: true,
+      //   },
+      //   (res) => {
+      //     console.log('返回值：', res)
+      //   }
+      // )
+      // inputEl.oninput = throttleChange
+
+      // Promise返回值
+      const throttleChange = throttle(inputChange, 2000, {
         leading: false,
         tailing: true,
       })
+
+      const tempCallback = function () {
+        throttleChange().then((res) => {
+          console.log('返回值1：', res)
+        })
+      }
+
+      inputEl.oninput = tempCallback
+
+      const cancelBtn = document.querySelector('#cancel')
+      cancelBtn.onclick = function () {
+        throttleChange.cancel()
+      }
     </script>
   </body>
 </html>

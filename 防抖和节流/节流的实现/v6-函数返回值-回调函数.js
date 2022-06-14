@@ -6,10 +6,17 @@
  * @returns
  */
 
-function throttle(fn, interval, options = { leading: false, tailing: true }) {
+function throttle(
+  fn,
+  interval,
+  options = { leading: false, tailing: true },
+  resultCallback
+) {
   // 1、记录上一次的开始时间
   let lastTime = 0
   let timer = null
+
+  const { leading, tailing } = options
 
   // 2、事件触发时，真正执行的函数
   const _throttle = function (...args) {
@@ -24,23 +31,34 @@ function throttle(fn, interval, options = { leading: false, tailing: true }) {
 
     if (remainTime <= 0) {
       // 如果触发就取消定时器的，避免执行两次
-      clearTimeout(time)
-      timer = null
+      if (timer) {
+        clearTimeout(time)
+        timer = null
+      }
       // 2.3 真正的触发函数
-      fn.apply(this, args)
+      const result = fn.apply(this, args)
+      resultCallback(result)
       // 2.4 保留上次触发的时间
       lastTime = nowTime
+      return
     }
 
     // 尾部是否执行, timer 可以避免在时间间隔多次设置定时器
     if (tailing && !timer) {
-      // 取消定时器，重新设置
-      clearTimeout(timer)
-      const timer = setTimeout(() => {
-        fn.apply(this, args)
+      timer = setTimeout(() => {
         timer = null
-      }, interval)
+        // 头部不立即执行，需要重置 lastTime 为初始值 0，避免下次 interval - (nowTime - lastTime) 为 负数立即执行
+        lastTime = !leading ? 0 : new Date().getTime()
+        const result = fn.apply(this, args)
+        resultCallback(result)
+      }, remainTime)
     }
+  }
+
+  _throttle.cancel = function () {
+    if (timer) clearTimeout(timer)
+    timer = null
+    lastTime = 0
   }
 
   return _throttle
