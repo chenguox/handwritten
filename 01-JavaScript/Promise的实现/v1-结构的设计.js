@@ -1,3 +1,5 @@
+// 参考 promise a+ 规范设计
+// https://promisesaplus.com/
 const PROMISE_STATUS_PEDDING = 'pedding'
 const PROMISE_STATUS_FULFILLED = 'fulfilled'
 const PROMISE_STATUS_REJECTED = 'rejected'

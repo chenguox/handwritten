@@ -37,7 +37,12 @@ class GXPromise {
       }
     }
 
-    executor(resolve, reject)
+    try {
+      executor(resolve, reject)
+    } catch (err) {
+      console.log('处理异常----')
+      reject(err)
+    }
   }
 
   then(onFulFilled, onRejected) {
@@ -46,25 +51,40 @@ class GXPromise {
       if (this.status === PROMISE_STATUS_PEDDING) {
         // 改造原先直接将回调函数直接放进数组
         this.onFulFilledFn.push(() => {
-          const value = onFulFilled(this.value)
-          resolve(value)
+          try {
+            const value = onFulFilled(this.value)
+            resolve(value)
+          } catch (err) {
+            reject(err)
+          }
         })
         this.onRejectedFn.push(() => {
-          const reason = onRejected(this.reason)
-          // 异常才调用 reject
-          resolve(reason)
+          try {
+            const reason = onRejected(this.reason)
+            resolve(reason)
+          } catch (err) {
+            reject(err)
+          }
         })
       }
 
       // 如果在then调用的时候, 状态已经确定下来
       if (this.status === PROMISE_STATUS_FULFILLED && onFulFilled) {
-        const value = onFulFilled(this.value)
-        // 将执行完的值 resolve 作为下次 then 的执行
-        resolve(value)
+        try {
+          const value = onFulFilled(this.value)
+          // 将执行完的值 resolve 作为下次 then 的执行
+          resolve(value)
+        } catch (err) {
+          reject(err)
+        }
       }
       if (this.status === PROMISE_STATUS_REJECTED && onRejected) {
-        const reason = onRejected(this.reason)
-        reject(reason)
+        try {
+          const reason = onRejected(this.reason)
+          reject(reason)
+        } catch (err) {
+          reject(err)
+        }
       }
     })
   }
@@ -72,6 +92,8 @@ class GXPromise {
 
 const promise = new GXPromise((resolve, reject) => {
   console.log('状态pending')
+  console.log('正在执行---出现异常')
+  throw new Error('executor error message')
   resolve(111)
   // reject(222)
 })
@@ -80,11 +102,12 @@ promise
   .then(
     (res) => {
       console.log('onFulFilled', res)
-      return res
+      return 'aaaa'
+      throw new Error('err message')
     },
     (err) => {
-      console.log('onRejected', err)
-      return err
+      console.log('onRejected')
+      return 'bbbb'
     }
   )
   .then(
