@@ -6,12 +6,18 @@
  * @returns
  */
 
-function throttle(fn, interval, options = { leading: false, tailing: true }) {
+function throttle(fn, interval, options = {
+  leading: false,
+  tailing: true
+}) {
   // 1、记录上一次的开始时间
   let lastTime = 0
   let timer = null
 
-  const { leading, tailing } = options
+  const {
+    leading,
+    tailing
+  } = options
 
   // 2、事件触发时，真正执行的函数
   const _throttle = function (...args) {
@@ -41,7 +47,7 @@ function throttle(fn, interval, options = { leading: false, tailing: true }) {
     if (tailing && !timer) {
       timer = setTimeout(() => {
         timer = null
-        // 头部不立即执行，需要重置 lastTime 为初始值 0，避免下次 interval - (nowTime - lastTime) 为 负数立即执行
+        // 头部不立即执行，需要重置 lastTime 为初始值 0 才能满足第一次判断 ！lastTime，其他情况保持 lastTime = nowTime
         lastTime = !leading ? 0 : new Date().getTime()
         fn.apply(this, args)
       }, remainTime)

@@ -1,30 +1,29 @@
 function debounce(fn, delay, immediate = false) {
   let timer = null
-  let isInvoke = false
+  let flag = true
 
   const _debounce = function (...args) {
     return new Promise((resolve, reject) => {
       if (timer) clearTimeout(timer)
-
-      // 是否立即执行
-      if (immediate && !isInvoke) {
-        isInvoke = true
+      if (immediate && flag) {
         const result = fn.apply(this, args)
+        flag = false
         resolve(result)
       } else {
+
         timer = setTimeout(() => {
           const result = fn.apply(this, args)
+          falg = false
           resolve(result)
-          isInvoke = false
         }, delay)
       }
     })
   }
 
-  _debounce.cancel = function () {
+  _debounce.cancle = function () {
     if (timer) clearTimeout(timer)
     timer = null
-    isInvoke = false
+    flag = false
   }
 
   return _debounce
