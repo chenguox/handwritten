@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>取消请求</button>
+
+    <!-- <script src="./v2-接收参数.js"></script> -->
+    <!-- <script src="./v3-优化get请求.js"></script> -->
+    <script src="./v4-接收响应回来的参数.js"></script>
+
+    <script>
+      // 测试代码
+      // get 请求
+      gxajax({
+        url: 'http://123.207.32.32:1888/02_param/get',
+      })
+
+      // get 请求携带参数
+      gxajax({
+        url: 'http://123.207.32.32:1888/02_param/get?name=why&age=18&address=广州市',
+      })
+
+      // get 请求携带 data 参数
+      gxajax({
+        url: 'http://123.207.32.32:1888/02_param/get',
+        method: 'GET',
+        data: {
+          name: 'why',
+          age: 18,
+        },
+      })
+
+      gxajax({
+        url: 'http://123.207.32.32:1888/02_param/get',
+        method: 'GET',
+        data: {
+          name: 'why',
+          age: 18,
+        },
+      }).then((res) => {
+        console.log('结果：', res)
+      })
+
+      const cancelBtn = document.querySelector('button')
+      cancelBtn.onclick = function () {
+        xhr.abort()
+      }
+
+      // post 请求
+      // gxajax({
+      //   method: 'psot',
+      //   url: 'http://123.207.32.32:1888/02_param/postjson',
+      //   data: {
+      //     name: 'jsondata',
+      //     age: 22,
+      //   },
+      // })
+    </script>
+  </body>
+</html>

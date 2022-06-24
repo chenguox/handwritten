@@ -15,6 +15,10 @@ async function foo() {
 
 foo()
 console.log('444444')
+
+
+
+
 // 111111
 // 22222
 // 444444
