@@ -16,8 +16,6 @@ class Depend {
 
 const dep = new Depend()
 
-
-
 function watchFn(fn) {
   dep.addDepend(fn)
 }
