@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-i18n@9"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ $t("message.hello") }}</p>
+    </div>
+
+    <script>
+      const messages = {
+        en: {
+          message: {
+            hello: 'hello world',
+          },
+        },
+        zh: {
+          message: {
+            hello: '你好，世界',
+          },
+        },
+      }
+
+      // 2. 创建 i18n 实例对象
+      const i18n = VueI18n.createI18n({
+        locale: 'en', // 设置语言环境
+        fallbackLocale: 'en', // 设置备用语言环境
+        messages, // 设置语言环境信息
+      })
+
+      // 3. 创建 vue 根节点实例对象
+      const app = Vue.createApp({})
+
+      // 4. 安装 i18n 实例使整个应用程序支持 i18n
+      app.use(i18n)
+
+      // 5. 挂载
+      app.mount('#app')
+    </script>
+  </body>
+</html>
