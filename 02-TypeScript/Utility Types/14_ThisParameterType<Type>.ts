@@ -8,6 +8,7 @@ function toHex(this: Number) {
 function numberToString(n: ThisParameterType<typeof toHex>) {
   return toHex.apply(n)
 }
+// (parameter) n: Number
 
 type ThisParameterType<T> = T extends (this: infer U, ...args: never) => any
   ? U

@@ -5,6 +5,7 @@ interface Todo {
   createdAt: number
 }
 
+// 去除类型中某些项
 type TodoPreview = Omit<Todo, 'description'>
 
 const todo: TodoPreview = {
@@ -27,6 +28,7 @@ todoInfo
 // const todoInfo: TodoInfo
 
 // 源码
+// 以一个定义好的类型位基础，踢出指定的属性，重新生成一个类型！
 type Omit<T, K extends string | number | symbol> = {
   [P in Exclude<keyof T, K>]: T[P]
 }
