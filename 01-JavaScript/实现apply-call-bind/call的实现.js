@@ -3,7 +3,7 @@ Function.prototype.gxcall = function (thisArg, ...args) {
   const fn = this
 
   // 2、对 thisArg 进行处理
-  thisArg = (thisArg !== undefined && thisArg !== null) ? Object(thisArg) : window
+  thisArg = (thisArg !== undefined && thisArg !== null) ? Object(thisArg) : globalThis
 
   // 3、执行 fn 函数
   thisArg.fn = fn
@@ -25,8 +25,8 @@ function sum(num1, num2) {
 
 // 自己实现的函数的hycall方法
 // 默认进行隐式绑定
-foo.gxcall({ name: 'why' })
-foo.gxcall(0)
-foo.gxcall(undefined)
-var result = sum.gxcall('abc', 20, 30)
+// foo.gxcall({ name: 'why' })
+// foo.gxcall(0)
+// foo.gxcall(undefined)
+var result = foo.gxcall('abc')
 console.log('hycall的调用:', result)

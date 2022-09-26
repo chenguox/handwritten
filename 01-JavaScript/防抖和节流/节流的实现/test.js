@@ -1,49 +1,37 @@
-function throttle(fn, interval, option = {
-  leading: true
-  tailing: false
-}) {
+function throttle(fn, interval, { leading: false, traling: true}) {
+
   let lastTime = 0
   let timer = null
 
-  const _throttle = funciton(...args) {
-    return new Promise((resolve, reject) => {
-      // 默认情况下，第一次是会立即执行的
+  const _throttle = function (...args) {
+    return new Promise((resolve, reject)=>{
       let nowTime = new Date().getTime()
 
-      // 不想立即执行，且是第一次
-      if (!lastTime && !leading) {
-        lastTime = nowTime
-      }
-
+      if (!lastTime && !leading) lastTime = nowTime
+  
       let remainTime = interval - (nowTime - lastTime)
       if (remainTime <= 0) {
-        if (!timer) {
+        if (timer) {
           clearTimeout(timer)
           timer = null
         }
-
-        const resutl = fn.apply(this, args)
-
-        lastTime = nowTime
-        resolve(resutl)
-        return
+        const result = fn.apply(this, args)
+        resolve(result)
       }
-
-      // 需要尾部执行，算出剩余时间来设置一个定时器
-      if (tailing && !timer) {
-
+  
+      if (!timer && traling) {
         timer = setTimeout(() => {
-          const result = fn.apply(this, args)
-          resolve(result)
-          lastTime = !leading ? 0 : new Date().getTime()
           timer = null
+          const result = fn.apply(this, args)
+          lastTime = !leading ? 0 : new Date().getTime()
+          resolve(result)
         }, remainTime)
       }
     })
   }
 
   _throttle.cancel = function () {
-    if (timer) {
+    if(timer) {
       clearTimeout(timer)
       timer = null
       lastTime = 0

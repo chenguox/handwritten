@@ -101,6 +101,12 @@ promise
   .then((res) => {
     console.log('onFulFilled', res)
   })
+  .then((res) => {
+    console.log('onFulFilled', res)
+  })
+  .then((res) => {
+    console.log('onFulFilled', res)
+  })
   .catch((err) => {
     console.log('onRejected', err)
   })

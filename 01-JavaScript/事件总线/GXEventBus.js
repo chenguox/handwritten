@@ -7,6 +7,7 @@ class GXEventBus {
   on(eventName, eventCallback, thisArg) {
     // 判断 eventBus(事件总线) 中是否有已有该属性，没有则添加进去
     let handlers = this.eventBus[eventName]
+    // 边界判断
     if (!handlers) {
       handlers = []
       this.eventBus[eventName] = handlers

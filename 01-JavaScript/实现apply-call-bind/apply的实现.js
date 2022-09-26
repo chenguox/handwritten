@@ -1,4 +1,4 @@
-Function.prototype.gxapply = function (thisArg, ...args) {
+Function.prototype.gxapply = function (thisArg, args) {
   // 1、获取要执行的函数
   let fn = this
 
