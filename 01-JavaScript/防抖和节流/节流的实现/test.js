@@ -1,41 +1,39 @@
-function throttle(fn, interval, { leading: false, traling: true}) {
-
+function throttle(fn, interval, { leading: false, tailing: false }) {
   let lastTime = 0
   let timer = null
 
-  const _throttle = function (...args) {
-    return new Promise((resolve, reject)=>{
-      let nowTime = new Date().getTime()
+  const _throttle = function(...args){
+    return new Promise((resolve, reject) => {
+      const nowTime = new Date().getTime()
 
-      if (!lastTime && !leading) lastTime = nowTime
-  
-      let remainTime = interval - (nowTime - lastTime)
-      if (remainTime <= 0) {
-        if (timer) {
+      // 本身的逻辑就会立即执行，在 false 不立即执行
+      if(!leading && !lastTime) lastTime = nowTime
+
+      const remainTime = interval - (nowTime - lastTime)
+
+      if(remainTime <= 0) {
+        if(timer) {
           clearTimeout(timer)
           timer = null
         }
+
         const result = fn.apply(this, args)
+        lastTime = nowTime
+
         resolve(result)
+        return 
       }
-  
-      if (!timer && traling) {
+
+      // timer 为 null 的时候
+      if(tailing && !timer) {
         timer = setTimeout(() => {
           timer = null
+          lastTime = leading ? new Date().getTime() : 0
           const result = fn.apply(this, args)
-          lastTime = !leading ? 0 : new Date().getTime()
           resolve(result)
         }, remainTime)
       }
     })
-  }
-
-  _throttle.cancel = function () {
-    if(timer) {
-      clearTimeout(timer)
-      timer = null
-      lastTime = 0
-    }
   }
 
   return _throttle

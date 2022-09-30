@@ -1,61 +1,54 @@
 class myEventBus {
-  constructor() {
+  constructor(){
     this.eventBus = {}
   }
 
-  on(eventName, fn, thisArg) {
+  on(eventName, eventCallBack, thisArg) {
     let handles = this.eventBus[eventName]
-
-    if (!handles) {
+    if(!handles) {
       handles = []
       this.eventBus[eventName] = handles
     }
-
     handles.push({
-      fn,
+      eventCallBack,
       thisArg
     })
   }
 
-  emit(eventName, ...payload) {
+  emit(eventName, ...args) {
     const handles = this.eventBus[eventName]
-
-    if(!handles) return 
-
-    for(let i = 0; i < handles.length; i++){
-      const handle = handles[i].fn
-      const thisArg = handles[i].thisArg
-      handle.apply(thisArg, payload)
-    }
+    if(!handles) return
+    handles.forEach(handle => {
+      handle.eventCallBack.apply(handle.thisArg, args)
+    }) 
   }
 
-  off(eventName, fn) {
+  off(eventName, eventCallBack) {
     const handles = this.eventBus[eventName]
-
     if(!handles) return
-
-    const copy = [...handles]
-
-    for(let i = 0; i < copy.length; i++){
-      if(copy[i].fn === fn) {
-        const index = copy.indexOf(copy[i].fn)
-        handles.splice(index, 1)
+    const newHandles = [...handles]
+    for(const handle of newHandles){
+      if(handle.eventCallBack === eventCallBack){
+        const index = newHandles.indexOf(handle)
+        handles.splice(index,1)
       }
     }
   }
 }
 
+const myEvent = new myEventBus()
 
-
-const eventBus = new myEventBus()
-
-
-function test(aaa,bbb) {
-  console.log('发布了呀~', aaa, bbb)
+const fn = () => {
+  console.log('这是 test1')
 }
 
-eventBus.on('aaa', test, { bbb: 'ccc' })
+// 订阅
+myEvent.on('test', fn , 'aaa')
 
-eventBus.off('aaa', test)
+myEvent.on('test', () => {
+  console.log('这是 test2')
+}, 'bbb')
 
-eventBus.emit('aaa', '123', 'bbb')
+myEvent.off('test', fn)
+
+myEvent.emit('test')

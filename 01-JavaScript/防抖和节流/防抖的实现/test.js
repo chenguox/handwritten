@@ -1,31 +1,45 @@
 function debounce(fn, delay, immediate = false) {
   let timer = null
-  // 第一次是否立即执行过了
-  let first = false
+  let first = true
 
-  const _debounce = function (...args) {
-    return new Primise((resolve, reject) => {
-      if (timer) clearTimeout(timer)
+    function _debounce(...args) {
+      return new Promise((resolve, reject) => {
+        if(timer) clearTimeout(timer)
 
-      if (immediate && !first) {
-        const result = fn.apply(this, args)
-        first = true
-        resolve(result)
-      } else {
-        timer = setTimeout(() => {
+        if(immediate && first) {
           const result = fn.apply(this, args)
-          first = false
           resolve(result)
-        }, delay);
-      }
-    })
-  }
+          first = false
+        } else {
+          timer = setTimeout(() => {
+            const result = fn.apply(this, args)
+            resolve(result)
+            timer = null
+            first = true
+          }, delay)
+        }
+      })
+    }
 
-  _debounce.cancel = function () {
-    if (timer) clearTimeout(timer)
-    first = false
-    timer = null
-  }
+    _debounce.cancel = function() {
+      if(timer) clearTimeout(timer)
+      timer = null
+      first = true
+    }
 
-  return _debounce
+    return _debounce
 }
+
+function test() {
+  console.log('1111')
+}
+
+const newTest = debounce(test, 2000, true)
+
+
+newTest()
+newTest()
+newTest.cancel()
+// newTest()
+// newTest()
+// newTest()
