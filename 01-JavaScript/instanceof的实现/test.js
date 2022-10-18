@@ -1,18 +1,18 @@
-function myInstanceof(obj, fn) {
-  let proto = obj.__proto__
+function myInstanceof(o, c) {
+  let _proto = o.__proto__
 
-  const prototype = fn.prototype
+  const _prototype = c.prototype
 
-  while (proto) {
-    if (proto === prototype) {
+  while(_proto) {
+    if(_proto === _prototype) {
       return true
     }
-    proto = proto.__proto__
-
+    _proto = _proto.__proto__
   }
 
   return false
-}
+} 
+
 
 
 class Person {
@@ -22,11 +22,7 @@ class Person {
   }
 }
 
-// const p = new Person('小明', 18)
-const p = {
-  name: 'aaa'
-}
+const p = new Person('aaa', 18)
 
-console.log(p instanceof Person);
-
-console.log(myInstanceof(p, Person));
+console.log(p instanceof Person)
+console.log(myInstanceof(p, Person))

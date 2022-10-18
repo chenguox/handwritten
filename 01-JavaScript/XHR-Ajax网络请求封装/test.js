@@ -1,40 +1,35 @@
-function fetchData({
+function fetch({
   url,
   method: 'get',
-  data: {}
+  data
 }) {
-  const xhr = new XMLHttpRequest()
-  const promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
 
-    xhr.onload() {
-      if (xhr.status > 200 || xhr.status < 300) {
+    xhr.onload = function () {
+      if (xhr.status > 200 && xhr.status < 300) {
         // console.log(xhr.response)
-        resolve(xhr.response)
-      }else{
-        // console.log({status: xhr.status, message: xhr.statusText})
-        reject({status: xhr.status, message: xhr.statusText})
+        resolve(re)
+      } else {
+        console.log({ status: xhr.status, message: xhr.statusText })
       }
     }
 
     xhr.responseType = 'json'
 
-    if(method.toUpperCase() === 'GET'){
-      const params = []
+
+    if(method.toUpperCase() === 'GET') {
+      const queryStrings = []
       for(const key in data) {
-        params.push(`${key}=${data[key]}`)
+        queryStrings.push(`${key}=${data[key]}`)
       }
-      url = url + '?' + params.join('&')
-      xhr.open(method, url)
+      url = url + '?' + queryStrings.json('&')
+      xhr.open(methods, url)
       xhr.send()
-    }else {
-      xhr.open(method, url)
-      xhr.setRequestHeader('Content-type', 'applycation/json')
+    }else{
+      xhr.open(methods, url)
+      xhr.setRequestHeader('Content-type', "application/json")
       xhr.send(JSON.stringify(data))
     }
   })
-
-  promise.xhr = xhr
-
-  return promise
 }
-

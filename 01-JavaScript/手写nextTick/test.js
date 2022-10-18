@@ -1,19 +1,22 @@
 const queue = []
 let waiting = false
-const handleQueue = () => {
-  queue.forEach(cb => {
-    cb()
+const runQueue = () => {
+  queue.forEach(fn => {
+    fn()
   })
-
   waiting = false
 }
+
+
+
 
 const nextTick = (cb) => {
   queue.push(cb)
 
   if(!waiting) {
+    // 只需要执行一次
     Promise.resolve().then(() => {
-      handleQueue()
+      runQueue()
     })
     waiting = true
   }

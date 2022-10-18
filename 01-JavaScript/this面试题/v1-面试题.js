@@ -21,3 +21,9 @@ sayName();
 // 2 person: 隐式调用
 // 3 person: 隐式调用
 // 4 window: 赋值表达式(独立函数调用)
+
+
+
+
+
+

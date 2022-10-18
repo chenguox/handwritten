@@ -99,3 +99,38 @@ setTimeout(() => {
   objProxy.name = 'bbb'
   objProxy.name = 'ccc'
 }, 2000);
+
+
+
+function reactive(obj) {
+  return new Proxy(obj, {
+    get: function(target, key, receiver) {
+      const depend = getDepend(target, key)
+      depend.add()
+      return Reflect.get(target, key, receiver)
+    },
+    set: function(target, key, newValue, receiver) {
+      Reflect.set(target, key, newValue, receiver)
+      const depend = getDepend(target, key)
+      depend.notify()
+    }
+  })
+}
+
+function reactive2(obj) {
+  Object.keys().forEach(key => {
+    let value = obj[key]
+    Object.defineProperty(obj, key, {
+      get: function() {
+        const depend = getDepend(obj, key)
+        depend.add()
+        return value
+      },
+      set: function(newValue) {
+        value = newValue
+        const depend = getDepend(obj, key)
+        depend.notify()
+      })
+    })
+  })
+}

@@ -1,6 +1,7 @@
 function myNew(fn, ...args) {
   const obj = {}
-  obj.__proto = fn.prototype
+  obj.__proto__ = fn.prototype
+  this = obj
   fn.apply(this, args)
   return obj
 }

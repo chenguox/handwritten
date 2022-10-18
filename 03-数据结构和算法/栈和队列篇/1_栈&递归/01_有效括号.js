@@ -31,3 +31,18 @@
 console.log(isValid('()[]{}'))
 
 
+// const isValid = function(arr) {
+//   const stack = []
+
+//   for(let i = 0; i < arr.length; i++) {
+//     const chat = arr[i]
+//     if(chat === '(' || chat === '{' || chat === '[') stack.push(chat)
+//     if(!stack.length) return false
+
+//     if(chat === ')' && stack.pop() !== '(') return false 
+//     if(chat === ']' && stack.pop() !== '[') return false
+//     if(chat === '}' && stack.pop() !== '{') return false
+//   }
+
+//   return stack.length === 0
+// }

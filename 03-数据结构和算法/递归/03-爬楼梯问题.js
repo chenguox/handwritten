@@ -21,3 +21,8 @@ function walkTimes(n) {
 }
 
 console.log(walkTimes(6))
+
+// s[1] 1
+// s[2] 1
+// s[3] 2
+// s[4] 要么从楼梯3 要么楼梯2

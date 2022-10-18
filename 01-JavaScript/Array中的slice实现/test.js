@@ -1,20 +1,20 @@
-Array.prototype.mySlice = function(start,end){
+Array.prototype.mySlice = function(start, end) {
+  const arr = this
 
-  const array = this
   start = start || 0
-  end = end || 0
+  end = end || arr.length
 
-  const newArray = []
-
-  for (let index = start; index < end; index++) {
-    const element = array[index];
-    newArray.push(element)
+  const result = []
+  for(let i = start; i < end; i++) {
+    result.push(arr[i])
   }
-
-  return newArray
+  return result
 }
 
-var names = ["aaa", "bbb", "ccc", "ddd"]
-var newNames = names.mySlice(1, 3)
-console.log('原数组：', names)
-console.log('结果：', newNames)
+
+
+
+const arr = [1,2,3,4,5]
+const newArr = arr.mySlice(1, 3)
+
+console.log(newArr)

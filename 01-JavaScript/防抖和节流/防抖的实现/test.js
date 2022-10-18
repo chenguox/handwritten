@@ -2,44 +2,30 @@ function debounce(fn, delay, immediate = false) {
   let timer = null
   let first = true
 
-    function _debounce(...args) {
-      return new Promise((resolve, reject) => {
-        if(timer) clearTimeout(timer)
+  const _debounce = function (...args) {
+   return new Promise((resolve, reject) => {
+      if (timer) clearTimeout(timer)
 
-        if(immediate && first) {
+      if (first && immediate) {
+        const result = fn.apply(this, args)
+        first = false
+        resolve(result)
+      } else {
+        timer = setTimeout(() => {
           const result = fn.apply(this, args)
-          resolve(result)
           first = false
-        } else {
-          timer = setTimeout(() => {
-            const result = fn.apply(this, args)
-            resolve(result)
-            timer = null
-            first = true
-          }, delay)
-        }
-      })
-    }
+          timer = null
+          resolve(result)
+        }, delay)
+      }
+   })
+  }
 
-    _debounce.cancel = function() {
-      if(timer) clearTimeout(timer)
-      timer = null
-      first = true
-    }
+  _debounce.cancel = function () {
+    if (timer) clearTimeout(timer)
+    first = true
+    timer = null
+  }
 
-    return _debounce
+  return _debounce
 }
-
-function test() {
-  console.log('1111')
-}
-
-const newTest = debounce(test, 2000, true)
-
-
-newTest()
-newTest()
-newTest.cancel()
-// newTest()
-// newTest()
-// newTest()

@@ -1,31 +1,29 @@
-function myCurry(fn) {
+function AutoCurry(fn) {
   const _curry = function(...args) {
-    if(args.length >= fn.length) {
-      const result = fn(...allArgs)
-      return result
-    } else {
+    if(args.lenght >= fn.length) {
+      fn.apply(this, args)
+    }else{
       const _curry2 = function(...args2) {
         return _curry.apply(this, args.concat(args2))
       }
-  
+
       return _curry2
-    } 
+    }
   }
 
   return _curry
 }
 
 
-function test(a, b, c, d) {
-  return a + b + c + d
+
+
+// 测试代码
+function add1(x, y, z) {
+  return x + y + z
 }
 
-const curryFn = myCurry(test)
+const afterFn = GXCurrying(add1)
 
-console.log(curryFn(1, 2, 3, 4))
-
-
-console.log(curryFn(1)(2)(3)(4))
-console.log(curryFn(1, 2)(3, 4))
-console.log(curryFn(1, 2, 3)(4))
-
+console.log(afterFn(10, 20, 30))
+console.log(afterFn(10, 20)(30))
+console.log(afterFn(10)(20)(30))

@@ -18,6 +18,7 @@ var person1 = {
   }
 }
 
+
 var person2 = { name: 'person2' }
 
 person1.foo1(); // 1

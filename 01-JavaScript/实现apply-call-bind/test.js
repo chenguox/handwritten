@@ -1,25 +1,23 @@
-Function.prototype.myBind = function (Argthis, ...args) {
+Function.prototype.myApply = function(thisArg, args) {
   const fn = this
 
-  Argthis = (Argthis === null || Argthis === undefined) ? globalThis : Object(Argthis)
+  thisArg = (thisArg === undefined || thisArg === null) ? globalThis : Object(thisArg)
 
-  const _fn = function(...args2){
-    Argthis.fn = fn
+  thisArg.fn = fn
 
-    const allArgs = [...args,...args2]
+  args = args || []
+  const result = thisArg.fn(args)
 
-    const result = Argthis.fn(...allArgs)
-    delete Argthis.fn
+  delete thisArg.fn
 
-    return result
-  }
-
-  return _fn
+  return result
 }
 
 
-function fn(aa, bb) {
-  console.log(aa, bb)
+
+function test(a, b) {
+  console.log('====',a,b)
 }
 
-fn.myBind({ aaa: '222' }, ['aaa', 'bbb'])
+test.myApply(undefined)
+test.myApply(123, 'aaa', bbb)

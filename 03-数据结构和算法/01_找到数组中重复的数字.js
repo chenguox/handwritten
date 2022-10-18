@@ -24,6 +24,7 @@ const findRepeatNumber = function(nums) {
   }
 }
 
+
 // const findRepeatNumber2 = function(nums) {
 //   const map = new Map()
 //   for(const num of nums) {

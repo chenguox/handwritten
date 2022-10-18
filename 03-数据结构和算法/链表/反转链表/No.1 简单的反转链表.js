@@ -41,3 +41,16 @@ let reverseList = (head) =>{
   return reverse(null, head);
 }
 
+let reverseList = (head) => {
+  if(!head) return null 
+  let per = null
+  let cur = head
+  while(cur) {
+    let next = cur.next
+    cur.next = pre
+    pre = cur
+    cur = next
+  }
+
+  return pre
+}
