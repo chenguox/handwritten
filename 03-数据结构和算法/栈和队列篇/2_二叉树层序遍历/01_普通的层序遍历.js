@@ -43,4 +43,3 @@ var levelOrder = function(root) {
   }
   return res;
 };
-

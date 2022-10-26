@@ -3,17 +3,39 @@
 
 const test = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
 
-function insertSort(arr) {
-  let len = arr.length
+// function insertSort(arr) {
+//   let len = arr.length
 
-  // 从第二个开始循环 i=1
-  for (let i = 1; i < len; i++) {
+//   // 从第二个开始循环 i=1
+//   for (let i = 1; i < len; i++) {
+//     for(let j = i; j > 0; j--) {
+//       // 可以理解为往前冒泡了
+//       if(arr[j] < arr[j-1]){
+//         // 大的 arr[j-1] => arr[j]
+//         // 小的 arr[j] => arr[j-1]
+//         [arr[j],arr[j-1]] = [ arr[j-1] , arr[j]]
+//       }
+//     }
+//   }
+
+//   return arr
+// }
+
+// console.log(insertSort(test))
+
+
+// 冒泡排序、选择排序、插入排序的时间复杂度都是 O(n^2)
+
+
+
+function insertSort(arr) {
+
+  const len = arr.length
+
+  for(let i = 1; i < len; i++) {
     for(let j = i; j > 0; j--) {
-      // 可以理解为往前冒泡了
-      if(arr[j] < arr[j-1]){
-        // 大的 arr[j-1] => arr[j]
-        // 小的 arr[j] => arr[j-1]
-        [arr[j],arr[j-1]] = [ arr[j-1] , arr[j]]
+      if(arr[j] < arr[j-1]) {
+        [arr[j],arr[j-1]] = [arr[j-1],arr[j]]
       }
     }
   }
@@ -22,6 +44,3 @@ function insertSort(arr) {
 }
 
 console.log(insertSort(test))
-
-
-// 冒泡排序、选择排序、插入排序的时间复杂度都是 O(n^2)

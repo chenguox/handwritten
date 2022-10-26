@@ -15,28 +15,51 @@
 
 const test = [5, 28, 3, 21, 11, 7, 6, 18]
 
+// function selectSort(arr) {
+//   const len = arr.length
+//   // 可以不用没遍历一层就创建一次
+//   let minIndex, temp
+
+//   // 1、外层循环 i 表示第几轮，i 可以理解为数组的索引值，表示每一轮要比较的数组的索引值，最后一个值不用比较 len -1
+//   for(let i = 0; i < len - 1; i++) {
+//     // i 可以理解为上面的 [], 假设第一个数就是最小数
+//     minIndex = i
+//     // 2、内层从 j 开始，依次往后数, 找到比开头小的，互换位置
+//     for(let j = i; j < len; j++) {
+//       // 寻找最小数的索引值
+//       if(arr[j] < arr[minIndex]){
+//         minIndex = j
+//       }
+//     }
+//     temp = arr[i]
+//     arr[i] = arr[minIndex]
+//     arr[minIndex] = temp
+//   }
+
+//   return arr
+// }
+
+
+
 function selectSort(arr) {
   const len = arr.length
-  // 可以不用没遍历一层就创建一次
-  let minIndex, temp
+  let temp, minIndex
 
-  // 1、外层循环 i 表示第几轮，i 可以理解为数组的索引值，表示每一轮要比较的数组的索引值，最后一个值不用比较 len -1
   for(let i = 0; i < len - 1; i++) {
-    // i 可以理解为上面的 [], 假设第一个数就是最小数
     minIndex = i
-    // 2、内层从 j 开始，依次往后数, 找到比开头小的，互换位置
-    for(let j = i; j < len; j++) {
-      // 寻找最小数的索引值
-      if(arr[j] < arr[minIndex]){
+    for(let j = i + 1; j < len; j++) {
+      if(arr[minIndex] > arr[j]) {
         minIndex = j
       }
     }
-    temp = arr[i]
+
+    temp =  arr[i]
     arr[i] = arr[minIndex]
     arr[minIndex] = temp
   }
 
   return arr
 }
+
 
 console.log(selectSort(test))
