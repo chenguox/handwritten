@@ -1,9 +1,10 @@
-
 /**
  * @param {number[]} nums
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+
+// 方法一： 正常旋转后移
 var rotate = function(nums, k) {
   const len = nums.length
 
@@ -24,11 +25,6 @@ var rotate = function(nums, k) {
 };
 
 
-const nums = [1,2]
-rotate(nums, 3)
+const nums = [1,2,3,4,5,6,7,8]
+rotate2(nums, 3)
 console.log(nums)
-
-// 1. 循环 k 次
-// 1.1 每次循环获取数组最后的值，进行保存
-// 1.2 将数据从倒数第2位往后移
-// 1.3 将保存的值赋值给数组第一个元素
