@@ -1,0 +1,352 @@
+https://juejin.cn/post/7023242274876162084
+https://juejin.cn/post/6942322281913778206
+https://juejin.cn/collection/6942416844758351902
+1. Node基础
+1.1 说说Node是什么？和浏览器有什么区别和关系？
+Node.js是⼀个基于V8 JavaScript引擎的JavaScript运⾏时环境
+ V8可以嵌⼊到任何C ++应⽤程序中，⽆论是Chrome还是Node.js，事实上都是嵌⼊了V8引擎来执⾏JavaScript代码；
+但是在Chrome浏览器中，还需要解析、渲染HTML、CSS等相关渲染引擎，另外还需要提供⽀持浏览器操作的API、浏览器⾃⼰的事件循环等
+在Node.js中我们也需要进⾏⼀些额外的操作，⽐如⽂件系统读/写、⽹络IO、加密、压缩解压⽂件等操作
+
+在浏览器中，全局变量都是在window上的，⽐如有document、setInterval、setTimeout、
+alert、console等
+ 在浏览器中执⾏的JavaScript代码，如果我们在顶级范围内通过var定义的⼀个属性，默认会被添加到window对象上。
+
+在Node中，我们也有⼀个global属性，并且看起来它⾥⾯有很多其他对象
+ 在node中，我们通过var定义⼀个变量，它只是在当前模块中有⼀个变量，不会放到全局中
+
+1.2 说说你对模块化开发的理解
+ 模块化开发最终的⽬的是将程序划分成⼀个个⼩的结构(模块)
+ 这个结构中编写属于⾃⼰的逻辑代码，有⾃⼰的作⽤域，定义变量名词时不会影响到其他的结构
+可导出变量,函数,对象等给其他模块⽤，也可导⼊其他模块中的变量,函数,对象
+按照这种结构划分开发程序的过程，就是模块化开发的过程
+早期是没有模块化, 带来⼀些问题
+ 命名冲突 -> ⽴即执⾏函数 -> ⾃定义模块 -> 没有规范
+社区中模块化规范: CommonJS/AMD/CMD
+ES6中推出模块化: ES Module
+
+ 1.3 什么是 yarn 和 npm？为什么要⽤ yarn 代替 npm 呢？
+ npm 是与 Node.js ⾃带的默认包管理器，它有⼀个⼤型的公共库和私有库，存储在 npm registry 的数据库中（官⽅默认中⼼库 http://registry.npmjs.org/，国内淘宝镜像 http://registry.npm.taobao.org/），⽤户可以通过 npm 命令⾏访问该仓库。在 npm 的帮助下，⽤户可以轻松管理项⽬中的依赖项。
+ yarn 也是⼀个包管理器，是由Facebook、Google、Exponent 和 Tilde 联合推出了⼀个新的 JS 包管理⼯具，它有如下的优点：
+速度快，⽀持并⾏安装。⽆论 npm 还是 Yarn 在执⾏包的安装时，都会执⾏⼀系列任务。npm 是按照队列执⾏每个 package，也就是说必须要等到当前 package 安装完成之后，才能继续后⾯的安装。⽽ Yarn 是同步执⾏所有任务，提⾼了性能。
+离线模式，如果之前已经安装过⼀个软件包，⽤Yarn再次安装时之间从缓存中获取，就不⽤像npm那样再从⽹络下载了。
+ yarn 是为了弥补早期npm 的⼀些缺陷⽽出现的，因为早期的npm存在很多的缺陷，⽐如安装依赖速度很慢、版本依赖混乱等等⼀系列的问题。虽然从npm5版本开始，进⾏了很多的升级和改进，但是依然很多⼈喜欢使⽤yarn。
+
+1.4 说出 npm install 的安装过程
+执⾏ npm install 会检测是有package-lock.json⽂件：
+ 没有lock⽂件
+分析依赖关系，这是因为我们可能包会依赖其他的包，并且多个包之间会产⽣相同依赖的情况；
+从 registry 仓库中下载压缩包（如果我们设置了镜像，那么会从镜像服务器下载压缩包）；
+获取到压缩包后会对压缩包进⾏缓存（从npm5开始有的）；
+将压缩包解压到项⽬的node_modules⽂件夹中（前⾯我们讲过，require的查找顺序会在该包下⾯查找）
+ 有lock⽂件
+检测lock中包的版本是否和package.json中⼀致（会按照semver版本规范检测）
+不⼀致，那么会重新构建依赖关系，直接会⾛顶层的流程
+⼀致的情况下，会去优先查找缓存
+没有找到，会从registry仓库下载，直接⾛顶层流程
+查找到，会获取缓存中的压缩⽂件，并且将压缩⽂件解压到node_modules⽂件夹中
+
+ 1.5 什么是pnpm？为什么说pnpm⾼性能？
+ pnpm是⼀个快速、节省磁盘空间的软件包管理器，特点是：快速、⾼效，并⽀持monorepo等等。
+ 当使⽤ npm 或 Yarn 时，如果你有 100 个项⽬，并且所有项⽬都有⼀个相同的依赖包，那么， 你在硬盘上就需要保存 100 份该相同依赖包的副本。为了解决上⾯的问题，就出现了pnpm，使⽤ pnpm安装的依赖包将被存放在⼀个统⼀的位置。
+当安装软件包时， 其包含的所有⽂件都会硬链接到此位置，⽽不会占⽤额外的硬盘空间
+pnpm 是软连接和硬链接相结合，⽅便在项⽬之间共享相同版本的依赖包
+2. webpack基础
+ 2.1 什么是webpack，说说你对webpack的理解
+ webpack是⼀个静态的模块化打包⼯具，它将根据模块的依赖关系进⾏静态分析，然后将这些模块按照指定的规则⽣成对应的静态资源。
+ 对 webpack 的理解
+打包⼯具：webpack可以将帮助我们进⾏模块打包，所以它是⼀个打包⼯具。
+⽣成静态资源：这样表述的原因是我们最终可以将代码打包成最终的静态资源（部署到静态服务器）
+⽀持模块化：webpack默认⽀持各种模块化开发，ES Module、CommonJS、AMD等
+
+ 2.2 有哪些常⻅的Loader？你⽤过哪些Loader
+ file-loader ：把⽂件输出到⼀个⽂件夹中，在代码中通过相对 URL 去引⽤输出的⽂件 (处理图⽚和字体)
+url-loader ：与 file-loader 类似，区别是⽤户可以设置⼀个阈值，⼤于阈值会交给 file-loader 处理，⼩于阈值时返回⽂件 base64 形式编码 (处理图⽚和字体)
+sass-loader ：将SCSS/SASS代码转换成CSS
+less-loader ：将Less码转换成CSS
+css-loader ：加载 CSS，⽀持模块化、压缩、⽂件导⼊等特性
+style-loader ：把 CSS 代码注⼊到 JavaScript 中，通过 DOM 操作去加载 CSS
+postcss-loader ：扩展 CSS 语法，使⽤下⼀代 CSS，可以配合 autoprefixer 插件⾃动补⻬ CSS3 前缀
+
+
+ 2.3 有哪些常⻅的Plugin？你⽤过哪些Plugin？
+ define-plugin ：定义环境变量 (Webpack4 之后指定 mode 会⾃动配置)
+html-webpack-plugin ：简化 HTML ⽂件创建 (依赖于 html-loader)
+clean-webpack-plugin : ⽬录清理
+webpack-bundle-analyzer : 可视化 Webpack 输出⽂件的体积 (业务组件、依赖第三⽅模块)
+
+ 2.4 说⼀说Loader和Plugin的区别？
+ Loader 本质就是⼀个函数，在该函数中对接收到的内容进⾏转换，返回转换后的结果。 因为 Webpack 只认识 JavaScript，所以 Loader 就成了翻译官，对其他类型的资源进⾏转译的预处理⼯作。
+Plugin 就是插件，基于事件流框架 Tapable ，插件可以扩展 Webpack 的功能，在 Webpack 运⾏的⽣命周期中会⼴播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。
+Loader 在 module.rules 中配置，作为模块的解析规则，类型为数组。每⼀项都是⼀个 Object，内部包含了 test(类型⽂件)、loader、options (参数)等属性。
+Plugin 在 plugins 中单独配置，类型为数组，每⼀项是⼀个 Plugin 的实例，参数都通过构造函数传⼊。
+
+ 2.5 source map是什么？
+source map 是将编译、打包、压缩后的代码映射回源代码的过程。打包压缩后的代码不具备良好的可读性，想要调试源码就需要 soucre map。
+map⽂件只要不打开开发者⼯具，浏览器是不会加载的。
+线上环境⼀般有三种处理⽅案：
+ hidden-source-map ：借助第三⽅错误监控平台 Sentry 使⽤
+nosources-source-map ：只会显示具体⾏数以及查看源代码的错误栈。安全性⽐ sourcemap ⾼
+sourcemap ：通过 nginx 设置将 .map ⽂件只对⽩名单开放(公司内⽹)
+注意：避免在⽣产中使⽤ inline- 和 eval- ，因为它们会增加 bundle 体积⼤⼩，并降低整体性能。
+
+
+ 2.6 什么是babel？babel在开发中是什么作⽤？
+ Babel是⼀个JavaScript的编译⼯具，常⽤于编译JavaScript代码。
+⽐如：可以将ECMAScript 2015+代码转换为向后兼容版本的JavaScript (即ES6以上的代码转成ES5代码)，但Babel在进⾏代码转换时是需要依赖对应的插件来转换。
+
+
+ 2.7 vue-loader是什么 ？使⽤它的⽤途有哪些？
+ Vue Loader 是⼀个 webpack 的 loader，它允许你以⼀种名为单⽂件组件 (SFC)的格式撰写 Vue 组件。
+Vue Loader 还提供了很多酷炫的特性：
+允许为 Vue 组件的每个部分使⽤其它的 webpack loader，例如在 <style> 的部分使⽤Sass 和在 <template> 的部分使⽤ Pug；
+允许在⼀个 .vue ⽂件中使⽤⾃定义块，并对其运⽤⾃定义的 loader 链；
+使⽤ webpack loader 将 <style> 和 <template> 中引⽤的资源当作模块依赖来处理；
+为每个组件模拟出 scoped CSS；
+在开发过程中使⽤热重载来保持状态。
+简⽽⾔之，webpack 和 Vue Loader 的结合为你提供了⼀个现代、灵活且极其强⼤的前端⼯作流，来帮助撰写 Vue.js 应⽤。
+
+1、Webpack 常规配置项有哪些？
+1、mode
+mode 可以配置 production、development 和 none
+production 配置生产模式，打包比较慢，会开启 tree-shaking 和 压缩代码等优化
+development 配置开发模式，打包更加快速，省了代码优化步骤
+none 表示不使用任何默认优化选项
+
+2、entry 和 output
+默认情况下 webpack 会去找当前项目下的 src 目录下的 main.js，并把 main.js 作为入口文件进行打包，并将生成后的文件放入 dist 目录中。如果我们不想使用默认的配置，可以使用 entry 和 output 选择打包的入口和出口。
+
+3、module
+module 配置项是给我们配置对应的 loader 的，webpack 已经帮助我们内置处理了 js 模块，所以不需要我们做什么就可以处理 js 文件，但是，对于 css 文件、图片、字体等等就需要我们配置对应的 loader 去处理，我们配置一个 rules 数组，数组中每个 rule 对象配置 test 匹配对应的文件，通过 use 配置使用什么 loader 处理。 
+
+4、plugin
+用来配置我们需要使用的插件，它与 Loader 用于转换特定类型的文件不同，插件（Plugin）可以贯穿 Webpack 打包的生命周期，执行不同的任务。常见的插件有 
+html-webpack-plugin : 用于生成 index.html 文件并引入我们打包好的 bundle.js 文件
+clean-webpack-plugin : 用于打包生成文件，并将文件输出到 dist 目录之前，将 dist 目录下的文件先清空
+copy-webpack-plugin : 用于配置将我们需要的文件复制到 dist 目录中。 
+define-plugin: 用于定义全局变量
+
+5、devServer
+在开发阶段，如果每次都要打包再刷新我们整个 index.html 页面是非常的低效的，我们会使用 webpack-dev-server 来开启一个本地服务 ，devServer 配置项就是用来配置对应的选项的，我们可以配置 host 属性来设置主机地址，配置 port 属性来设置监听的端口，配置 open 属性来设置是否打开浏览器，配置 compress 属性来设置是否为静态文件开启 gzip 压缩，配置 proxy 属性来设置代理服务器解决本地启动服务的跨域问题，配置 historyApiFallBack 来解决配置 history 路由刷新返回 404 错误，使错误时自动返回 index.html 页面
+
+6、resolve
+resolve 配置项，可以配置 extensions 来设置文件扩展名的解析，配置 alias 来设置别名，配置 modules 告诉 webpack 解析模块时应该搜索的目录，默认为 node_module。
+
+7、resolveLoader
+resolveLoader 与上面的 resolve 对象的属性集合相同， 但仅用于解析 webpack 的 loader 包。
+2、常用 Loader 有哪些？
+css-loader 处理 css 模块代码
+style-loader 将 css 插入到页面中使样式生效
+less-loader 将 less 代码转成 css 代码
+postcss-loader，postcss 是一个通过 JavaScript 来转换样式的工具，通过借助 PostCSS 对应的插件，可以对 css 进行转换和适配，比如：自动添加浏览器前缀 和 css 样式的重置。需要安装 postcss-cli 才能在命令行中使用。真实开发中，我们不会使用命令行工具来对 css 进行处理，而是通过 webpack 配置 postcss-loader 自动来对 css 进行转换和适配。
+file-loader 帮助我们处理 import 或 require() 方式引入的一个文件资源，并且会将它放到我们输出的文件夹中，会修改它的名字；
+url-loader，url-loader 和 file-loader 的工作方式是相似的，但是可以将较小的文件，转成base64 的 URI。
+babel-loader: 主要用来将 ES6 代码转为为 ES5 代码，一般配置预设，让 webpack 根据预设来加载对应的插件列表来使用 bable 进行处理。
+ts-loader: 使用 ts-loader 可以来直接编译 TypeScript，只能将 ts 转换成 js，是没办法在这个过程中添加对应的 polyfill，但可以做到对类型进行检测，如果我们希望将 ts 转成 js，并且可以实现添加 polyfill 功能，可以使用 babel-loader，但是 babel-loader 在编译的过程中，不会对类型错误进行检测。
+html-loader: 可以将一个html页面代码片段赋值给DOM元素内容使用，其实就是将html处理成字符串，在变成模块化的方式导出。
+eslint-loader: eslint 是一个静态代码分析工具，可以帮助我们在项目中建立统一的团队代码规范，通过配置使用 eslint-loader 可以自动帮我们检测代码规不规范。
+vue-loader: 用于编译.vue文件，需要安装 template-sfc 插件来处理 template。 
+
+3、如何配置 loader ？
+默认情况下，在 webpack.config.js 配置文件中，在 module.exports 中配置 module 配置项，通过给 rules 数组配置一个个 rule 对象，rule 对象配置 test 属性匹配对应的文件，配置 use 属性配置使用的 loader，也可以使用 loader 属性配置 loader。
+4、loader 有什么作用？
+我看过官方文档中有说过，webpack 默认只能处理 JavaScript 和 JSON 文件，而想要处理其他类型的文件，并将它们转换成有效的模块来使用，就需要使用 loader，所以loader的作用我认为是将某种类型的文件转成我们想要的模块内容。
+
+5、常用插件（Plugin）有哪些 ? (新)
+clean-webpack-plugin
+可以帮助我们在打包前将文件夹删除
+html-webpack-plugin
+我们打包后的文件夹里是没有 index.html 文件的，但是，在我们进行项目部署的时候，必须有对应的入口文件 index.html，这个插件可以帮我们打包的时候生成一个 index.html 文件，同时引入对应的 bundle.js。默认情况下，使用插件自带的 ejs 模板，也可以自定义模板。
+define-plugin
+webpack 内置的插件，不需要单独安装，可以用来创建配置的全局常量。
+copy-webpack-plugin
+默认可以将我们放在 public 目录下的文件复制到 dist 目录下，可以配置 from 从哪里复制，配置 to 复制到哪里，配置 globOptions 忽略哪些文件。
+mini-css-extract-plugin
+可以帮助我们将css提取到一个独立的css文件中
+terser-webpack-plugin
+帮助我们压缩、丑化我们的代码，让我们的bundle变得更小
+css-minimizer-webpack-plugin
+使用cssnano工具来优化、压缩CSS（也可以单独使用）
+purgecss-webpack-plugin
+对 css 进行 tree shaking 操作
+compression-webpack-plugin
+实现对一些文件进行HTTP压缩
+speed-measure-webpack-plugin
+可以获取每一个 loader 和 每一个 plugin 消耗的打包时间。用来进行打包分析，会生成一个 stats.json 文件，可以放到 webpack 提供给我们网站进行分析
+webpack-bundle-analyzer
+打包 webapck 的时候，这个工具是帮助我们打开一个8888端口上的服务，我们可以直接的看到每个包的大小，比如有一个包时通过一个 Vue组件打包的，但是非常的大，那么我们可以考虑是否可以拆分出多个组件，并且对其进行懒加载；
+
+
+6、Plugin 如何的配置？
+导入插件，一般情况下是一个类，在 module.exports 中配置 plugins 选项，对应的值是个数组，将需要使用的插件通过 new 的方式生成对象作为该数组的元素值。
+7、Plugin 有什么作用？
+因为 loader 只能处理的是对某种类型文件进行转换，而 plugin 的执行时贯穿整个webpack 的生命周期的，所以我理解的 plugin 是可以用于执行更加广泛的任务，比如打包优化、资源管理、环境变量注入等，即 plugin 的作用是为了解决 loader 无法实现的事情。
+
+8、Babel 的如何配置？Babel 插件如何使用？（新）
+1、什么是babel
+我理解的 babel 是一个工具链，通过一系列的工具，来实现语法转换或者源代码转换。在 webpack 中，我们主要使用 babel 来将 es6代码转为 es5代码，实现将代码转为可以给旧浏览器兼容的代码。
+2、babel的使用
+使用 babel 我们需要安装 babel 的核心和对应的 cli， 并且安装我们需要使用的bable插件，执行babel命令时通过 --plugins 配置指定使用的插件。 但是，使用的插件很多会造成命令过长，而一般要使用的插件都是那几个，所以可以通过使用预设方式，可以理解它本身也是一个插件，但是这个插件是很多个插件集合而成的。
+3、babel在webpack中的使用
+在 webpack 中，我们会使用 babel-loader，通过配置 options 选项来指定使用的插件，同样可以使用预设，也可以抽取成单独 babel.config.js 文件。 
+4、babel 的原理
+babel 将一种源代码转成了另一种源代码，所以 babel 其实就相当于一个编译器，babel 拥有编译器的工作流程，解析、转换、生成。
+(1) 将原生源代码经过词法分析转成tokens数组，经过语法分析转成抽象语法树
+(2) 抽象语法树经过遍历、访问和对应的bable插件转换成新的抽象语法树
+(3) 将新的抽象语法树生成目标代码输出
+
+9、Loader 和 Plugin 有什么区别？
+我认为两种的区别主要在于要做的事的目的不同，
+Loader 只是用于特定的模块类型进行转换，也就是将某种类型的文件转成我们想要的模块内容。
+而 plugin 的执行时贯穿整个webpack 的生命周期的，所以我理解的 plugin 是可以用于执行更加广泛的任务，比如打包优化、资源管理、环境变量注入等，即 plugin 的作用是为了解决 loader 无法实现的事情。
+
+ 
+10、如何编写 Loader 和 Plugin ? 介绍一下思路？
+我有写过 Loader 和 Plugin，可以在我的 github 上看到我个人自定义 loader 和自定义 plugin 相关的练习代码。
+关于 Loader 的编写，我写过 mybabel-loader 和 md-loader，mybabel-loader 的作用和 babel-loader 一样，使用 babel 核心结合插件进行了代码转换，md-loader 可以将 mackdown 文件转成 html 内容，其实 Loader 的本质上是一个导出为函数的 JavaScript 模块，所以我们只需要编写一个 function 接收内容，那么 loader runner 库会调用这个函数，将上一个 loader 产生的结果或者资源文件传入进去。
+关于 Plugin 的编写，我写过 generate-md-plugin 和 send-email-plugin，generate-md-plugin 可以生成一个 mackdown 文件将我们打包生成的文件名列出来，send-email-plugin 可以在打包成功后发送邮件到指定的邮箱。我看过一点 webpack 的源码，它内部是使用 createCompiler 方法来注册所有的插件，在注册插件时，会调用插件函数或者插件对象的apply方法，会给 apply 方法注入一个 compiler 对象，所以我们自定义 Plugin 都是编写一个类，在写一个 apply 方法接收一个 compiler 对象，我们可以通过 compiler 对象来注册 Hook 事件，这样在 webpack 的生命周期过程中会触发这些事件来执行对应的处理。我觉得核心得理解两个点，一个是得理解官方编写和维护的一个库 tapable，它分为同步和异步，tapable 可以注册不同的钩子，通过 emit 触发。另一个点就是两个非常重要的类 Compiler 和 Compliation，compiler 对象代表了整个 webpack 从启动到关闭的生命周期，而 compilation 对象只是代表一次新的编译过程。所以编写自定义 plugin 就是注册 compiler 和 compilation 暴露的钩子，而在 webpack 中会通过将 compiler 对象注入到 apply 方法，所以我们拿到 compiler 对象就可以注册不同的钩子来监听 webpack 的所有生命周期，然后执行处理代码。
+
+11、Webpack optimize 有配置过吗？可以简单说说吗？
+
+ 
+12、Webpack 层面如何性能优化？
+webpack 可以分为三个层面进行优化：
+1、优化构建速度
+也就是优化打包所需要花费的时间，我们一般会先安装 speed-measure-webpack-plugin 插件，通过该插件获取到每一个 loader 和 plugin 打包所需要消耗的时间进行分析。我们会进行一些优化操作，如：
+优化 resolve 配置， 设置别名、扩展名和解析模块事应该搜索的目录，让 webpack 优先 src 目录下查找需要解析的文件，会大大节省查找时间。
+配置 externals 来将一些排除打包进入 bundle，而从外部扩展，如从 CDN 引入
+配置 loader 的时候，通过 include 和 exclude 两个配置项更精确的去指定 loader 的作用目录或者需要排除的目录
+配置 noParse 忽略那些不需要解析依赖的第三方大型类库，被忽略的模块文件不会解析 import 和 require 语法，从而提高构建速度
+利用缓存可以大幅提升重复构建的速度，比如对 babel-loader 开启缓存，babel 在转译 js 过程中时间开销比价大，将 babel-loader 的执行结果缓存起来，重新打包的时候，直接读取缓存。
+
+2、优化构建结果
+也就是优化打包的体积大小，我们会先借助 webpack-bundle-analyzer 插件，打包 webapck 的时候，这个工具会帮助我们打开一个8888端口上的服务，我们可以直接的看到每个包的大小、各模块依赖关系等，方便我们进行项目优化时，进行问题诊断。
+减少打包体积可以借助插件压缩 js 文件和 css 文件，并进行 tree shaking 操作删除无用的代码，对 js 文件进行压缩可以使用 terser-webpack-plugin 插件，对 css 文件进行压缩可以optimize-css-assets-webpack-plugin 插件，对 js 代码的 tree shaking 操作 webpack 默认支持，生产环境下会默认开启，对 css 代码的 tree shaking 操作可以借助 purgecss-webpack-plugin 插件。
+
+3、优化运行时体验
+也就是我们常说的提升首屏的加载速度，主要的方式是降低首屏加载文件提交，对首屏不需要的文件进行预加载或者按需加载。
+优化方式有，配置多入口打包, 使用 split-chunks-plugin 插件进行分包，使用 import函数实现懒加载，在import函数配置魔法注释设置为 prefetch 告诉浏览器在空闲的时候下载好。如果是 preload 会和主文件并行下载好。
+ 
+13、Webpack 打包流程是怎样的？
+1、根据命令或者配置文件找到入口文件，如果没有，会默认去找 src 目录下的index.js 文件作为入口文件
+2、从入口开始，生成一个包含应用程序所需的所有模块的依赖关系图
+3、遍历图结构，打包一个个模块，模块文件会被使用不同的 loader 来解析
+14、tree-shaking 实现原理是怎样的？
+tress shaking 在计算机中表示消除死代码，在 webpack 中，我们的 tree shaking 的作用是将一些无用的代码删除掉。通过配置 usedExports 为 true，
+这个生产环境下默认为 true，那么 webpack 在打包时会通过添加注释的方式来标记某些函数是否被使用过，之后通过 Terser 来进行优化，比如添加注释告诉 Terser 这个代码没有被使用，那么 Terser 在优化的时候就可以删除掉这段代码。
+ 
+15、Webpack 热更新（HMR）是如何实现？
+webpack 热更新做到只更新一个模块的内容是因为 webpack-dev-server 会创建两个服务，一个是使用 express 创建的静态资源服务，一个是使用 net.Socket 创建的 Socket 服务。express 服务器负责提供静态资源的服务，也就是浏览器向该服务器请求获取静态资源，它是一个短连接，浏览器请求完会断开。而 Socket 服务是会和浏览器建立一个 scoket 的长连接，这样的好处是建立连接后双方可以通信，所以当服务器监听到对应的模块发生变化时，会生成两个文件 manifest.json 文件和一个要更新的 chunk.js 文件，通过长连接，可以直接将这两个文件主动发送给浏览器，浏览器拿到这两个新的文件后，通过 HMR runtime 机制，加载这两个文件，并且针对修改的模块进行更新。
+
+ 
+16、Webpack 打包中 Babel 插件是如何工作的？
+1、在 webpack.config.js 配置使用 babel-loader 对 js 文件处理
+2、webpack 打包时会匹配 js 文件，使用 bable-loader 进行处理
+3、使用 babel 将原生源代码经过词法分析转成tokens数组，经过语法分析转成抽象语法树
+4、抽象语法树经过遍历、访问和对应的 bable插件 转换成新的抽象语法树
+5、将新的抽象语法树生成目标代码输出
+
+
+ 
+17、Webpack 和 Rollup 有什么相同点与不同点？
+
+ 
+18、Webpack5 更新了哪些新特性？
+
+
+19、webpack 是什么？
+webapck 是一个用于现代的 JavaScript 应用程序的静态模块化的打包工具。
+因为现在前端的开发面临很多问题，才催生了 webpack 的出现和发展，我们会借助 webpack 将我们的代码打包成静态资源，并且支持各种模块化的开发，ES Moudle、CommonJS 、AMD 等，所以才说，webapck 是一个用于现代的 JavaScript 应用程序的静态模块化的打包工具。
+
+20、什么是 PostCSS 呢？
+PostCSS 是一个 JavaScript 工具，可以用来对样式进行转换。通过借助 PostCSS 对应的插件，我们能进行一些 CSS 的转换和适配，比如：自动添加浏览器前缀、CSS样式重置等等。一般我们不会安装一个个插件，而是直接安装postcss的预设（ postcss-preset-env ），这个插件就已经集成了我们基本需要的插件，所以直接使用这个插件就可以帮助我们将一些现代的 CSS 特性，转成大多数浏览器认识的 CSS，并且还会根据目标浏览器或者运行时环境添加所需的 polyfill。 
+
+21、你知道 asset module type 吗？
+在 webpack 5 之前，我们加载一些资源需要使用 url-loader 、file-loader，在 webpack 5 开始我们可以直接使用资源模块类型 asset module type 来替代上面这些 loader。
+
+22、HMR 有什么优点（好处）？
+1、不会重新加载整个页面，这样可以保留某些应用程序的状态不会丢失
+2、只更新需要变化的内容，节省开发时间
+3、修改了 css、js 源代码，会立即在浏览器更新。
+
+3. Git
+3.1 集中式版本控制和分布式版本控制有什么区别？
+集中式版本控制(简称 CVCS） ⽐如 CVS和SVN
+主要特点是单⼀的集中管理的服务器，保存所有⽂件的修订版本
+协同开发⼈员通过客户端连接到这台服务器，取出最新的⽂件或者提交更新
+集中式版本控制也有⼀个核⼼的问题：中央服务 器不能出现故障
+分布式版本控制系统 (简 称 DVCS) ⽐如git
+客户端并不只提取最新版本的⽂件快照， ⽽是把代码仓库完整地镜像下 来，包括完整的历史
+记录
+这么⼀来，任何⼀处协同⼯作⽤的服务器发⽣故障，事后都可以⽤任何⼀个镜像出来的本地
+仓库恢复
+因为每⼀次的克隆操作，实际上都是⼀次对代码仓库的完整备份
+Git SVN
+1. Git是⼀个分布式的版本控制⼯具 1. SVN 是集中版本控制⼯具
+2.它属于第3代版本控制⼯具 2.它属于第2代版本控制⼯具
+3.客户端可以在其本地系统上克隆整个存储库 3.版本历史记录存储在服务器端存储库中
+4.即使离线也可以提交 4.只允许在线提交
+5.Push/pull 操作更快 5.Push/pull 操作较慢
+6.⼯程可以⽤ commit ⾃动共享 6.没有任何东⻄⾃动共享
+Git和SVN的区别
+3.2 ⼯作中常⻅的Git命令有哪些？
+#创建版本库:
+$ git clone <url>  #克隆远程版本库
+$ git init #初始化本地版本库
+#修改和提交:
+$ git status #查看状态
+$ git add <file> #跟踪指定的⽂件
+$ git add .  #将⽂件添加到暂存区中
+$ git commit -m #将暂存区的⽂件进⾏提交更新
+#查看提交历史:
+$ git log #查看提交的历史
+$ git log -p <file> #查看指定⽂件的提交历史
+#对分⽀和标签的操作:
+#分⽀:
+$ git branch #查看本地所有分⽀
+$ git checkout <branch> #切换到指定的分⽀
+$ git branch <new-branch> #创建新的分⽀
+$ git branch -d <branch> #删除本地分⽀
+#标签:
+3.3 Git分⽀管理（Git Flow）
+Production分⽀
+也就是我们经常使⽤的Master分⽀，这个分⽀包含最近发布到⽣产环境的代码，最近发布的
+Release， 这个分⽀只能从其他分⽀合并，不能在这个分⽀直接修改
+Develop分⽀
+这个分⽀是我们的主开发分⽀，包含所有要发布到下⼀个Release的代码，这个主要合并于其他分
+⽀，⽐如Feature分⽀
+Feature分⽀
+$ git tag <newtag> #基于最新提交创建标签
+$ git tag #查看所有的本地标签
+$ git tag -d <tagname> #删除指定的标签
+$ git push --tags #上传所有标签到远程仓库
+#分⽀合并:
+$ git merge <branch> #合并指定分⽀到当前分⽀
+$ git rebase <branch> #衍合指定分⽀到当前分⽀
+#远程操作:
+$ git remote add <remote> <url> #关联远程仓库
+$ git remote -v #查看所关联的远程版本库信息
+$ git fetch <remote> #从指定的远程仓库中获取代码、信息
+$ git pull <remote> <branch> #获取远程仓库的代码并且合并
+$ git push <remote> <branch> #上传本地库的代码⾄远程仓库并且合并
+#远程分⽀的操作:
+#分享⼀个分⽀，并且将其推送到有写⼊权限的仓库上:
+$ git push <remote> <branch>
+#跟踪远程分⽀:
+#克隆⼀个仓库时，默认会创建⼀个跟踪origin/master的分⽀
+#⾃⼰设置跟踪其他分⽀:
+$ git checkout --track <remote>/<branch>
+#删除远程分⽀:
+$ git push origin --delete <branch>
+#获取别⼈更新的远程分⽀信息:
+$ git fetch <remote> <branch>
+这个分⽀主要是⽤来开发⼀个新的功能，⼀旦开发完成，我们合并回Develop分⽀，并进⼊下⼀个
+Release
+Release分⽀
+当你需要发布⼀个新Release的时候，我们基于Develop分⽀创建⼀个Release分⽀，完成Release
+后，我们合并到Master和Develop分⽀
+Hotfix分⽀
+当我们在Production发现新的Bug时候，我们需要创建⼀个Hotfix, 完成Hotfix后，我们合并回
+Master和Develop分⽀，所以Hotfix的改动会进⼊下⼀个Release
+
+
