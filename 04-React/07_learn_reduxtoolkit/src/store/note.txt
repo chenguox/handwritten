@@ -1,0 +1,75 @@
+需求：使用 redux-toolkit 重构计数器(基础使用),首页展示（异步请求）
+
+1.安装 redux-toolkit 和 react-redux
+npm install @reduxjs/toolkit react-redux
+
+2. 创建 store 文件夹，创建 features 文件夹 和 index.js 文件
+- features: 不同的 reducer 片段
+- index.js: 配置 store
+
+3. 创建 counter.js 文件，编写对应的代码
+（1） 导入 createSlice 函数
+（2） 创建 counterSlice 片段
+（3） 导出
+
+4. 创建 store 对象
+（1）导入 configureStore 函数
+（2）导入要处理的 reducer 
+（3）创建 counter.js 文件，编写对应的代码
+（4）导出 store 对象
+
+5. 在项目中使用
+
+
+异步的请求：（默认集成了 thunk， 不需要格外安装）
+1. 第一种方式：
+export const fetchHomeMultidataAction = createAsyncThunk(
+  'fetch/homemultidata',
+  async (extraInfo, { dispatch, getState }) => {
+     // 1.发送网络请求, 获取数据
+    const res = await axios.get('http://123.207.32.32:8000/home/multidata')
+
+     // 2.取出数据, 并且在此处直接dispatch操作(可以不做)
+    console.log(res)
+    const banners = res.data.data.banner.list
+    console.log(banners)
+    dispatch(changeBanners(banners))
+
+    // 3.返回结果, 那么action状态会变成fulfilled状态
+    return res.data
+  }
+)
+
+2. 第二种方式：createAsyncThunk + extraReducers对象
+export const fetchHomeMultidataAction = createAsyncThunk(
+  'fetch/homemultidata',
+  async (extraInfo, { dispatch, getState }) => {
+    const res = await axios.get('http://123.207.32.32:8000/home/multidata')
+    return res.data
+  }
+)
+extraReducers: {
+  [fetchHomeMultidataAction.pending](state, action) {
+    console.log('fetchHomeMultidataAction pending')
+  },
+  [fetchHomeMultidataAction.fulfilled](state, { payload }) {
+    state.banners = payload.data.banner.list
+  },
+  [fetchHomeMultidataAction.rejected](state, action) {
+    console.log('fetchHomeMultidataAction rejected')
+  }
+}
+
+3. 第三种方式：createAsyncThunk + extraReducers函数
+extraReducers: (builder) => {
+  builder.addCase(
+    fetchHomeMultidataAction.pending, (state, action) => {
+      console.log('fetchHomeMultidataAction pending')
+    }
+  ).addCase(
+    fetchHomeMultidataAction.fulfilled, (state, action) => {
+      console.log('action:', action)
+      state.banners = action.payload.data.banner.list
+    }
+  )
+}
