@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import { connect } from '../hoc/index'
 
 import { addNumberAction, subNumberAction } from '../store/actionCreators'
 
