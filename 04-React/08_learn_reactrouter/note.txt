@@ -1,0 +1,26 @@
+最基本的引入使用
+1、安装 react-router
+npm install react-router-dom
+
+2、选择路由的模式(导入对应的组件，并对 App 组件进行包裹)
+BrowserRouter 使用history模式；
+HashRouter 使用hash模式；
+
+3、自动跳转 Link、NavLink , 组件的占位与映射 routes + route
+
+
+嵌套
+1、通过 Route 包裹要嵌套的内容
+2、Oulter 占位
+
+手动跳转，提供了 useNavigate 不适合在 类组件中使用，自己封装 withRouter 高阶组件
+
+
+路由配置
+1. 定义 routes 数组
+2. 导出 routes 数组
+
+
+路由懒加载
+(1) React.lazy
+(2) Suspense
