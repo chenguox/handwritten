@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 100px;
+      background-image: url(../images/grid.png);
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+      margin-bottom: 50px;
+
+      /* 形变 */
+      /* transform: translateX(100px); */
+      /* 先平移后旋转 */
+      /* transform: translateX(100px) rotate(45deg); */
+      /* 先旋转后平移 */
+      transform: rotate(45deg) translateX(100px);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">div</div>
+</body>
+</html>
