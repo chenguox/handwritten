@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+
   <canvas id="tutorial" width="300" height="300px">
     你的浏览器不兼容Canvas,请升级您的浏览器!
   </canvas>
@@ -24,26 +25,31 @@
   <script>
     window.onload = function() {
       let canvasEl = document.getElementById('tutorial')
-      if(!canvasEl.getContext) return
+      if(!canvasEl.getContext){
+        return
+      }
+      let ctx = canvasEl.getContext('2d') // 2d | webgl
+      
+      ctx.fillStyle = 'red'
+      ctx.fillRect(10, 10, 30, 15)
+      ctx.save()
 
-      let ctx = canvasEl.getContext('2d')
+      ctx.fillStyle = 'green'
+      ctx.fillRect(50, 10, 30, 15)
+      ctx.save()
 
-      // 1、描边三角形
-      ctx.beginPath()
-      ctx.moveTo(50, 0)
-      ctx.lineTo(100, 50)
-      ctx.lineTo(50, 100)
-      // ctx.closePath()
-      ctx.stroke()
+      ctx.fillStyle = 'blue'
+      ctx.fillRect(90, 10, 30, 15)
+      ctx.save()
 
+      ctx.restore() // bule
+      ctx.fillRect(90, 40, 30, 15)
 
-      // 2、实心的三角形
-      ctx.beginPath()
-      ctx.moveTo(150, 0)
-      ctx.lineTo(200, 50)
-      ctx.lineTo(150, 100)
-      // ctx.closePath()
-      ctx.fill() // 它会 自动闭合路径
+      ctx.restore() // green
+      ctx.fillRect(50, 40, 30, 80)
+
+      ctx.restore() // red
+      ctx.fillRect(10, 40, 30, 80)
     }
   </script>
 </body>

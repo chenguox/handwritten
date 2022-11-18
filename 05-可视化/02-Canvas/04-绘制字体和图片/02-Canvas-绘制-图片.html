@@ -17,7 +17,8 @@
   </style>
 </head>
 <body>
-  <canvas id="tutorial" width="300" height="300px">
+
+  <canvas id="tutorial" width="300" height="300">
     你的浏览器不兼容Canvas,请升级您的浏览器!
   </canvas>
 
@@ -26,24 +27,25 @@
       let canvasEl = document.getElementById('tutorial')
       if(!canvasEl.getContext) return
 
-      let ctx = canvasEl.getContext('2d')
+      let ctx = canvasEl.getContext('2d') // 2d | webgl
 
-      // 1、描边三角形
-      ctx.beginPath()
-      ctx.moveTo(50, 0)
-      ctx.lineTo(100, 50)
-      ctx.lineTo(50, 100)
-      // ctx.closePath()
-      ctx.stroke()
+      // 1. 准备一张图片
+      var image = new Image()
+      image.src = '../images/backdrop.png'
 
+      image.onload = function() {
+        // 2. 开始用 Canvas 来绘制图片
+        ctx.drawImage(image, 0, 0, 180, 130)
 
-      // 2、实心的三角形
-      ctx.beginPath()
-      ctx.moveTo(150, 0)
-      ctx.lineTo(200, 50)
-      ctx.lineTo(150, 100)
-      // ctx.closePath()
-      ctx.fill() // 它会 自动闭合路径
+        // 3. 绘制折线
+        ctx.beginPath()
+        ctx.moveTo(40, 100)
+        ctx.lineTo(50, 70)
+        ctx.lineTo(60, 90)
+        ctx.lineTo(100, 30)
+        ctx.lineTo(170, 90)
+        ctx.stroke()
+      }
     }
   </script>
 </body>

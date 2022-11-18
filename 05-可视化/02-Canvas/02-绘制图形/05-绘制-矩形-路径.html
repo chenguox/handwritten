@@ -26,24 +26,18 @@
       let canvasEl = document.getElementById('tutorial')
       if(!canvasEl.getContext) return
 
-      let ctx = canvasEl.getContext('2d')
+      let ctx = canvasEl.getContext('2d') // 2d | webgl
 
-      // 1、描边三角形
+      // 1. 创建一个路径
       ctx.beginPath()
-      ctx.moveTo(50, 0)
-      ctx.lineTo(100, 50)
-      ctx.lineTo(50, 100)
-      // ctx.closePath()
+      // 2. 绘图指令
+      // ctx.moveTo(0, 0)
+      ctx.rect(100, 100, 100, 50)
+      // 3. 闭合路径
+      ctx.closePath()
+      // 4. 填充和描边
       ctx.stroke()
 
-
-      // 2、实心的三角形
-      ctx.beginPath()
-      ctx.moveTo(150, 0)
-      ctx.lineTo(200, 50)
-      ctx.lineTo(150, 100)
-      // ctx.closePath()
-      ctx.fill() // 它会 自动闭合路径
     }
   </script>
 </body>

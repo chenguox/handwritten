@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+  
   <canvas id="tutorial" width="300" height="300px">
     你的浏览器不兼容Canvas,请升级您的浏览器!
   </canvas>
@@ -28,22 +29,29 @@
 
       let ctx = canvasEl.getContext('2d')
 
-      // 1、描边三角形
-      ctx.beginPath()
-      ctx.moveTo(50, 0)
-      ctx.lineTo(100, 50)
-      ctx.lineTo(50, 100)
-      // ctx.closePath()
-      ctx.stroke()
+      // 保存形变之前的状态
+      ctx.save()
+      // 1. 形变
+      ctx.translate(100, 100)
+      // 360 -> Math.PI * 2
+      // 180 -> Math.PI
+      // 1 -> Math.PI / 180  （1度）
+      // 45 -> Math.PI / 180 * 45
+      ctx.rotate(Math.PI / 180 * 45)
+      ctx.fillRect(0, 0, 50, 50)
 
+        
+      // ctx.translate(100, 0)
+      // ctx.fillRect(0, 0, 50, 50)
+      // 绘图结束（恢复形变之前的状态）
+      ctx.restore()
 
-      // 2、实心的三角形
-      ctx.beginPath()
-      ctx.moveTo(150, 0)
-      ctx.lineTo(200, 50)
-      ctx.lineTo(150, 100)
-      // ctx.closePath()
-      ctx.fill() // 它会 自动闭合路径
+      ctx.save()
+      ctx.translate(100, 0)
+      ctx.fillRect(0, 0, 50, 50)
+      ctx.restore()
+
+      // ....下面在继续写代码的话,坐标轴就是参照的是原点了
     }
   </script>
 </body>

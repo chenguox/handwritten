@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+  
   <canvas id="tutorial" width="300" height="300px">
     你的浏览器不兼容Canvas,请升级您的浏览器!
   </canvas>
@@ -28,22 +29,19 @@
 
       let ctx = canvasEl.getContext('2d')
 
-      // 1、描边三角形
+      // ctx.lineWithth = 1
+
+      // ctx.beginPath()
+      // ctx.moveTo(20.5, 20)
+      // ctx.lineTo(20.5, 100)
+      // ctx.stroke()
+
+      ctx.lineWithth = 2
+
       ctx.beginPath()
-      ctx.moveTo(50, 0)
-      ctx.lineTo(100, 50)
-      ctx.lineTo(50, 100)
-      // ctx.closePath()
+      ctx.moveTo(20, 20)
+      ctx.lineTo(20, 100)
       ctx.stroke()
-
-
-      // 2、实心的三角形
-      ctx.beginPath()
-      ctx.moveTo(150, 0)
-      ctx.lineTo(200, 50)
-      ctx.lineTo(150, 100)
-      // ctx.closePath()
-      ctx.fill() // 它会 自动闭合路径
     }
   </script>
 </body>
