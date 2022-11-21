@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+</head>
+<body>
+  
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.定义App根组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          // 1、数字，字符串，数组
+          counter: 100,
+          message: "Hello World",
+          names: ['aaa', 'bbb', 'ccc'],
+        
+          // 2、undefined、null、boolean
+          aaa: undefined,
+          bbb: null,
+          ccc: true,
+
+          // 3、对象
+          friend: { name: 'kobe' },
+
+          // 4、表达式
+          firstName: 'kobe',
+          lastName: 'bryant',
+
+          // 5、三元运算符
+          age: 20,
+
+          // 6. 列表数据
+          movies : ["流浪地球", "星际穿越", "独行月球"]
+        }
+      }
+
+      render() {
+        // 1. 插入标识符
+        const { counter, message, names } = this.state
+        const { aaa, bbb, ccc } = this.state
+        const { friend } = this.state
+
+        // 2. 对内容进行运算后显示（插入表达式）
+        const { firstName, lastName } = this.state
+        const fullName = firstName + " " + lastName
+
+        const { age } = this.state
+        const ageText = age >= 18 ? '成年人' : '未成年人'
+        
+        const liEls = this.state.movies.map(
+          movie => <li key={movie}>{movie}</li>
+        )
+
+        return (
+          <div>
+            {/* 1. Number、String、Array 直接显示出来 */}
+            <h2>Number: {counter}</h2>
+            <h2>String: {message}</h2>
+            <h2>Array: {names}</h2>
+
+            <hr />
+            {/* 2.undefined/null/Boolean 不会显示出来*/}
+            <h2>undefined: {aaa}</h2>
+            <h2>null: {bbb}</h2>
+            <h2>Boolean: {ccc}</h2>
+
+            <hr />
+            {/* 转成字符串可以显示 */}
+            <h2>{String(aaa)}</h2>
+            <h2>{bbb + ""}</h2>
+            <h2>{ccc.toString()}</h2>
+
+            <hr />
+            {/* 3. Object类型不能作为子元素进行显示 */}
+            {/* <h2>报错: { friend }</h2> */}
+            <h2>Object: { friend.name }</h2>
+            <h2>{Object.keys(friend)[0]}</h2>
+
+            <hr />
+            {/* 4. 可以插入对应的表达式 */}
+            <h2>{10+30}</h2>
+            <h2>{firstName + " " + lastName}</h2>
+            <h2>{fullName}</h2>
+
+            <hr />
+            {/* 5. 可以插入三元运算符 */}
+            <h2>{ageText}</h2>
+            <h2>{ age >= 18 ? '成年人' : '未成年人'}</h2>
+
+            <hr />
+            {/* 6. 可以调用方法获取结果 */}
+            <ul>{liEls}</ul>
+            <ul>{
+              this.state.movies.map(
+                movie => <li key={movie}>{movie}</li>
+              )
+            }</ul>
+            <ul>{this.getMovieEls()}</ul>
+          </div>
+        )
+      }
+
+      getMovieEls() {
+        const liEls = this.state.movies.map(
+          movie => <li key={movie}>{movie}</li>
+        )
+
+        return liEls
+      }
+    }
+
+    // 2.创建root并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+  </script>
+
+</body>
+</html>

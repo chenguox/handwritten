@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+</head>
+<body>
+  
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.定义App根组件
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          isActive: true
+        }
+      }
+
+      render() {
+        const { isActive } = this.state
+
+        // 需求： isActive: true -> active
+        // 1. class绑定的写法一：字符串的拼接
+        const className = `abc cba ${isActive ? 'active': ''}`
+        // 2. 绑定 class 属性： 最好使用 className
+        const classList = ['abc', 'cba']
+        if(isActive) classList.push("active")
+        // 3. class绑定写法三： 第三方库classnames -> npm install
+        // classnames
+
+        return (
+          <div>
+            {/* 绑定class属性： 最好使用 className*/}
+            <h2 className={className}>哈哈哈哈</h2>
+            <h2 className={classList.join(" ")}>哈哈哈哈</h2>
+          </div>
+        )
+      }
+    }
+
+    // 2.创建root并且渲染App组件
+    const root = ReactDOM.createRoot(document.querySelector("#root"))
+    root.render(<App/>)
+  </script>
+
+</body>
+</html>
