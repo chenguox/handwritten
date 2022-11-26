@@ -30,7 +30,13 @@ import ReactDOM from 'react-dom/client';
 // import App from './16_React高阶组件/01_高阶组件的定义和作用/App'
 // import App from './16_React高阶组件/02_高阶组件应用-props增强/App'
 // import App from './16_React高阶组件/03_高阶组件应用-Context共享/App'
-import App from './16_React高阶组件/04_高阶组件应用-登录鉴权/App'
+// import App from './16_React高阶组件/04_高阶组件应用-登录鉴权/App'
+// import App from './16_React高阶组件/05_高阶组件应用-生命周期/App'
+
+
+// import App from './17_React的Portals/App'
+// import App from './18_React的fragment/App'
+import App from './19_React的严格模式/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
