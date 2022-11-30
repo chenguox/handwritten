@@ -2,7 +2,9 @@
   <main class="screen-bg">
     <div class="header"></div>
 
-    <div class="left-top"></div>
+    <div class="left-top">
+      <pie-charts :echartDatas="chargingPile"></pie-charts>
+    </div>
     <div class="left-bottom"></div>
 
     <div class="right-top"></div>
@@ -15,7 +17,12 @@
 </template>
 
 <script setup>
+  import { ref } from 'vue'
+  import PieCharts from '@/components/pie-echarts.vue'
 
+  import { chargingPileData } from "@/views/config/home-data.js"
+  
+  const chargingPile = ref(chargingPileData)
 </script>
 
 <style scoped>
