@@ -5,7 +5,9 @@
     <div class="left-top">
       <pie-charts :echartDatas="chargingPile"></pie-charts>
     </div>
-    <div class="left-bottom"></div>
+    <div class="left-bottom">
+      <line-charts :echartDatas="processMonitoringData"></line-charts>
+    </div>
 
     <div class="right-top"></div>
     <div class="right-center"></div>
@@ -19,8 +21,12 @@
 <script setup>
   import { ref } from 'vue'
   import PieCharts from '@/components/pie-echarts.vue'
+  import LineCharts from '@/components/line-echarts.vue'
 
-  import { chargingPileData } from "@/views/config/home-data.js"
+  import { 
+    chargingPileData,
+    processMonitoringData
+  } from "@/views/config/home-data.js"
   
   const chargingPile = ref(chargingPileData)
 </script>

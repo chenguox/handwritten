@@ -37,3 +37,15 @@ export const chargingPileData = [
     color: '#00C6FF',
   },
 ]
+
+// 流程监控的数据
+export const processMonitoringData = [
+  {
+      "name": "正常",
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  {
+      "name": "异常",
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  }
+]

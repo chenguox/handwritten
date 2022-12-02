@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body, ul{
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background-image: url(../images/grid.png);
+    }
+    svg{
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    整个 400 x 400 
+    400/200  => 宽度增大两倍 => 占据 200 
+    400/100  => 高度增大4倍 => 占据 400
+    然后默认居中显示
+
+    preserveAspectRatio
+    none： 强制拉伸图形以填充整个视口
+    xMinYMin: 图形在视口的最小x和y轴上显示
+  -->
+
+  <svg width="400" height="400"
+    viewBox="0 0 200 100"
+    preserveAspectRatio="xMinYMin"
+  >
+    <circle cx="50" cy="50" r="50"></circle>
+  </svg>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body, ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url(../images/grid.png);
+    }
+
+    svg {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  
+  <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+    <!-- 绘制一个宽100高50的矩形, 坐标点 0 0  -->
+    <rect x="0" y="0" width="100" height="50"></rect>
+
+    <!-- 
+      rx: 圆角的 x 轴方位的半径
+      ry: 圆角的 y 轴方位的半径
+    -->
+    <rect x="100" y="100" width="100" height="50" 
+          rx="20" ry="20"
+    ></rect>
+  </svg>
+
+</body>
+</html>

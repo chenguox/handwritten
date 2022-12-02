@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body, ul{
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background-image: url(../images/grid.png);
+    }
+    svg{
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  </style>
+
+</head>
+<body>
+
+  <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+    <!-- 缩放一个元素: 一个值时默认，第二个值和第一个一样 -->
+    <!-- 以下宽度放大一倍（是原来的两倍） -->
+    <!-- <rect
+      x="0" y="0"
+      width="100" height="100"
+      transform="scale(2, 1)"
+    ></rect> -->
+
+    <!-- 缩放一个元素: 一个值时默认，第二个值和第一个一样 -->
+    <!-- 以下宽和高放大一倍 -->
+    <!-- <rect
+      x="0" y="0"
+      width="100" height="100"
+      transform="scale(2)"
+    ></rect> -->
+    
+    <!-- 缩放会改变坐标系，如下 x => 100 -->
+    <!-- <rect
+      x="50" y="50"
+      width="100" height="100"
+      transform="scale(2, 1)"
+    ></rect> -->
+
+    <!-- 修改缩放的原点 -->
+    <g transform="scale(2)">
+      <!-- 向 x 轴平移了 20 -->
+      <rect
+        transform="translate(10, 0)"
+        x="0" y="0" width="50" height="50"
+      ></rect>
+    </g>
+  </svg>
+
+</body>
+</html>
