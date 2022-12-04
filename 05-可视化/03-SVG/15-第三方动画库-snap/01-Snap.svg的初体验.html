@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./libs/snap.svg-min.js"></script>
+
+  <script>
+    window.onload = function() {
+      // 1. 创建一个svg画布
+      var svg = Snap(200, 200)
+
+      // 2. 拿到一张白纸
+      var paper = svg.paper
+
+      // 3. 在白纸上绘制一个圆 (x, y, r)
+      const c = paper.circle(50, 50, 50)
+
+      // 4. 给圆添加一些属性
+      c.attr({
+        fill: 'red'
+      })
+
+      // 4. 将圆添加到页面上 svg.node(svg的元素的对象)
+      document.body.appendChild(svg.node)
+    }
+  </script>
+</body>
+</html>

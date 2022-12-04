@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import useEchart from '@/hooks/useEchart'
 
 const props = defineProps({
@@ -25,11 +25,23 @@ const props = defineProps({
 // 获取 dom 元素
 const divRef = ref(null)
 
-onMounted(() => {
-  let myChart = useEchart(divRef.value)
-  let option = getOption(props.echartDatas)
-  myChart.setOption(option);
+watch(() => props.echartDatas, (newV, oldV) => {
+  setupEchart(newV)
 })
+
+onMounted(() => {
+  setupEchart(props.echartDatas)
+})
+
+let myChart = null
+
+function setupEchart(echartDatas) {
+  if(!myChart) {
+    myChart = useEchart(divRef.value)
+  }
+  const option = getOption(echartDatas)
+  myChart.setOption(option);
+}
 
 function getOption(echartDatas) {
   let option = {
@@ -172,9 +184,6 @@ function getOption(echartDatas) {
   return option
 }
 
-    
-
-    
 </script>
 
 <style scoped lang="css"></style>
