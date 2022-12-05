@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1.默认传递event对象 -->
+    <button @click="btnClick1">1.默认传递 event 对象</button>
+
+    <!-- 2.只有自己的参数 -->
+    <button @click="btnClick2('cgx', age)">2.只有自己的参数</button>
+
+    <!-- 3. 自己的参数和event对象 -->
+    <!-- 在模板中想要明确的获取 event 对象：$event -->
+    <button @click="btnClick3('cgx', age, $event)">3.自己的参数和event对象</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          age: 18
+        }
+      },
+      methods: {
+        btnClick1(event) {
+          console.log("1.默认传递 event 对象", event)
+        },
+        btnClick2(name, age) {
+          console.log('2.只有自己的参数：', name, age)
+        },
+        btnClick3(name, age, event) {
+          console.log('3.自己的参数和event对象:',  name, age, event)
+        }
+      }
+    })
+    app.mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. 基本绑定 class  -->
+    <p :class="baseValue">1. 基本绑定 class 值</p>
+
+    <!-- 2. 动态的 class 值 -->
+    <p :class="isActive ? 'active' : ''">2. 动态的 class 值</p>
+
+    <!-- 对象的方式 -->
+    <!-- 2.1 对象语法基本使用 -->
+    <p :class="{ active : isActive }">2.1 对象语法基本使用</p>
+    <!-- 2.2 对象语法的多个键值对 -->
+    <p :class="{ active: isActive, aaa: true, bbb: false }">2.2 对象语法的多个键值对</p>
+    <!-- 2.3.动态绑定的class是可以和普通的class同时的使用 -->
+    <p class="ddd eee" :class="{ active: isActive, aaa: true, bbb: false }">2.3.动态绑定的class是可以和普通的class同时的使用 </p>
+    <!-- 2.4 动态绑定 class (方法) 和 普通的 class 同时使用 -->
+    <p class="ddd eee" :class="getDynamicClasses()"></p>
+    <button @click="changeIsActive">修改 isActive 的值</button>
+
+    <!-- 数组的方式 -->
+    <p :class="['aaa', 'bbb', 'ccc']">Hello Array</p>
+    <p :class="[baseValue, 'eee', 'fff']">Hello Array</p>
+    <p :class="[baseValue, 'eee', isActive? 'fff' : '']">Hello Array</p>
+    <p :class="[baseValue, 'eee', { fff : isActive }]">Hello Array</p>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data: function() {
+        return {
+          baseValue: "aaa bbb ccc",
+          isActive: true,
+        }
+      },
+      methods: {
+        changeIsActive: function() {
+          this.isActive = !this.isActive
+        },
+        getDynamicClasses: function() {
+          return { active: this.isActive, aaa: true, bbb: false }
+        }
+      }
+    })
+
+    app.mount("#app")
+  </script>
+</body>
+</html>

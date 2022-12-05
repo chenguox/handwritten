@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1. 基本使用 -->
+      <h3>{{ message }}</h3>
+      <h3>当前计数：{{ counter }}</h3>
+
+      <!-- 2. 表达式 -->
+      <h3>计数双倍: {{ counter * 2 }}</h3>
+      <h3>展示的信息: {{ info.split(" " )}}</h3>
+
+      <!-- 3. 三元运算符 -->
+      <h3>{{ age >= 18 ? "成年人" : "未成年人" }}</h3>
+
+      <!-- 4. 调用 methods 中函数 -->
+      <h3>{{ formatDate(time) }}</h3>
+
+      <!-- 5. 注意： 这里不能定义语句 -->
+      <!-- <h3>{{ const name = "cgx" }}</h3> -->
+    </div>
+
+    <script src="../lib/vue.js"></script>
+
+    <script>
+      const app = Vue.createApp({
+        data: function () {
+          return {
+            message: 'Hello Vue',
+            counter: 2,
+            info: 'my name is cgx',
+            age: 18,
+            time: 123,
+          }
+        },
+        methods: {
+          formatDate: function (date) {
+            return '2022-10-10-' + date
+          },
+        },
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

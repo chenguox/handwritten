@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. 普通的html写法 -->
+    <h4 style="color: red; font-size: 14px;">1. 普通的html写法</h4>
+
+    <!-- 2. 来自data中的值 -->
+    <!-- 2.1 动态绑定 style 的值，在后面跟上对象类型（重要） -->
+    <h4 :style="{color: fontColor, fontSize: fontSize + 'px'}">2.1 动态绑定 style 的值</h4>
+    <!-- 2.1 动态绑定 style 的值，这个属性是一个对象 -->
+    <h4 :style="objStyle">2.1 动态绑定 style 的值，这个属性是一个对象 </h4>
+
+    <!-- 3. style 的数组语法 -->
+    <h2 :style="[objStyle, { backgroundColor: 'purple'}]">3. style 的数组语法</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data: function() {
+        return {
+          fontColor: 'blue',
+          fontSize: 14,
+
+          objStyle: {
+            color: "green",
+            fontSize: '15px'
+          }
+        }
+      },
+      methods: {
+
+      }
+    })
+
+    app.mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 当组件重新渲染，如果 valueA 和 valueB 都保持不变，这个 <div> 及其子项的所有更新都将被跳过。实际上，甚至虚拟 DOM 的 vnode 创建也将被跳过，因为缓存的子树副本可以被重新使用。 -->
+    <div v-memo="[name, age]">
+      <h3>姓名: {{name}}</h3>
+      <h3>年龄: {{age}}</h3>
+      <h3>身高: {{height}}</h3>
+    </div>
+    <button @click="updateInfo">改变信息</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data: function() {
+        return {
+          name: 'cgx',
+          age: 18,
+          height: 1.88
+        }
+      },
+      methods: {
+        updateInfo: function() {
+          // this.age = 19
+          this.height = 1.99
+        }
+      }
+    })
+
+    app.mount("#app")
+  </script>
+</body>
+</html>

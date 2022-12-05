@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. methods -->
+    <h3>{{ getFullName() }}</h3>
+    <h3>{{ getFullName() }}</h3>
+    <h3>{{ getFullName() }}</h3>
+
+    <!-- 2. computed -->
+    <h3>{{ fullname }}</h3>
+    <h3>{{ fullname }}</h3>
+    <h3>{{ fullname }}</h3>
+
+    <!-- 修改name的值 -->
+    <button @click="changeLastname">修改 lastname 的值</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName: "kobe",
+          lastName: "bryant"
+        }
+      },
+      computed: {
+        fullname() {
+          console.log("computed====")
+          return this.firstName + " " + this.lastName
+        }
+      },
+      methods: {
+        getFullName() {
+          console.log("methods=====")
+          return this.firstName + " " + this.lastName
+        },
+        changeLastname() {
+          this.lastName = '6666'
+        }
+      }
+    })
+    app.mount("#app")
+  </script>
+</body>
+</html>

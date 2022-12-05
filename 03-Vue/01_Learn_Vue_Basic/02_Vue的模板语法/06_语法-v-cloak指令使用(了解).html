@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- v-cloak: 用于隐藏尚未完成编译的 DOM 模板。 -->
+    <div id="app">
+      <span v-cloak>{{ message }}</span>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+
+    <script>
+      setTimeout(() => {
+        const app = Vue.createApp({
+          data: function () {
+            return {
+              message: 'Hello Vue',
+            }
+          },
+        })
+
+        app.mount('#app')
+      }, 3000)
+    </script>
+  </body>
+</html>
