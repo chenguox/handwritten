@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h3>{{ info.name }}</h3>
+    <button @click="changeInfo">修改info</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          info: {
+            name: "cgx",
+            age: 18
+          }
+        }
+      },
+      methods: {
+        changeInfo() {
+          // 1. 创建一个新对象，赋值给 info
+          // this.info = { name: "kobe" }
+
+          // 2. 直接修改原对象某一个属性
+          this.info.name = "kobe"
+        }
+      },
+      watch: {
+        // 默认 watch 监听不会进行深度监听，也就是上面第2点，不会触发这个监听
+        // info(newValue, oldValue) {
+        //   console.log("侦听到info改变:", newValue, oldValue)
+        // },
+
+        // 进行深度监听
+        info: {
+          handler(newValue, oldValue) {
+            console.log("侦听到info改变:", newValue, oldValue)
+            console.log(newValue === oldValue)
+          },
+          // 监听器选项：info进行深度监听
+          deep: true,
+          // 第一次渲染直接执行一次监听器
+          immediate: true
+        },
+
+        // 对对象某个属性进行监听
+        "info.name": function(newValue, oldValue) {
+          console.log("name发送改变:", newValue, oldValue)
+        }
+      }
+    })
+    app.mount("#app")
+  </script>
+</body>
+</html>

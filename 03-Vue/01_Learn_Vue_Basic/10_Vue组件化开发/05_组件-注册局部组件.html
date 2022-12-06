@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .product {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <home-nav></home-nav>
+
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+  </div>
+
+  <template id="product">
+    <div class="product">
+      <h2>{{title}}</h2>
+      <p>商品描述, 限时折扣, 赶紧抢购</p>
+      <p>价格: {{price}}</p>
+      <button>收藏</button>
+    </div>
+  </template>
+
+  <template id="nav">
+    <div>-------------------- nav start ---------------</div>
+    <h1>我是home-nav的组件</h1>
+    <product-item></product-item>
+    <div>-------------------- nav end ---------------</div>
+  </template>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 创建 ProductItem 组件（本质是个对象）
+    const ProductItem = {
+      template: "#product",
+      data() {
+        return {
+          title: "我是 product 的 title",
+          price: 9.9
+        }
+      }
+    }
+
+    // 1. 根组件创建app实例
+    const app = Vue.createApp({
+      // 注册局部组件
+      components: {
+        ProductItem,
+        HomeNav: {
+          template: "#nav",
+          components: {
+            ProductItem
+          }
+        }
+      },
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      }
+    })
+
+    // 2. 挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

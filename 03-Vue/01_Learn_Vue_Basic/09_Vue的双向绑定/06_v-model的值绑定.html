@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1. select 的值绑定 -->
+      <select v-model="fruits" multiple size="3">
+        <option v-for="item in allFruits" :key="item.value" :value="item.value">{{ item.text }}</option>
+      </select>
+      <h3>多选：{{ fruits }}</h3>
+
+      <hr>
+
+      <!-- 2. checkbox 的值绑定 -->
+      <div class="hobbies">
+        <h3>请选择你的爱好: </h3>
+        <template v-for="item in allHobbies" :key="item.value">
+          <label :for="item.value">
+            <input :id="item.value" type="checkbox" v-model="hobbies" :value="item.value">{{ item.text }}
+          </label>
+        </template>
+        <h3>爱好: {{ hobbies }}</h3>
+      </div>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            // 水果
+            allFruits: [
+              { value: 'apple', text: '苹果' },
+              { value: 'orange', text: '橘子' },
+              { value: 'banana', text: '香蕉' },
+            ],
+            fruits: [],
+
+            // 爱好
+            allHobbies: [
+              { value: 'sing', text: '唱' },
+              { value: 'jump', text: '跳' },
+              { value: 'rap', text: 'rap' },
+              { value: 'basketball', text: '篮球' },
+            ],
+            hobbies: [],
+          }
+        },
+      })
+
+      app.mount('#app')
+    </script>
+  </body>
+</html>
