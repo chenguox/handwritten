@@ -6,5 +6,21 @@ npm install @vue/cli -g
 升级 Vue CLI 
 npm update @vue/cli -g
 
-创建项目
+创建项目 webpack
 vue create 项目的名称
+
+创建项目 vite
+npm init vue@latest
+
+====================
+1.jsconfig.json的演练
+作用: 给VSCode来进行读取, VSCode在读取到其中的内容时, 给我们的代码更加友好的提示.
+
+2.引入的vue的版本
+默认vue版本: runtime, vue-loader完成template的编译过程
+vue.esm-bundler: runtime + compile, 对template进行编译
+  
+3.补充: 单文件Vue style是有自己的作用域
+ style -> scoped
+
+4.补充: vite创建一个Vue项目
