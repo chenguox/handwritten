@@ -5,6 +5,7 @@
     <div>age: {{ age }}</div>
     <div>level: {{ level }}</div>
     <button @click="changeState">修改state</button>
+    <button @click="resetState">重置state</button>
   </div>
 </template>
 
@@ -35,6 +36,10 @@ function changeState() {
     level: 2000
   }
   console.log(oldState === userStore.$state)
+}
+
+function resetState() {
+  userStore.$reset()
 }
 
 </script>
