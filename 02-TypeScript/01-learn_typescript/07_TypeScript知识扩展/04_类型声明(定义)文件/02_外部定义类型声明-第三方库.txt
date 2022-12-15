@@ -1,0 +1,8 @@
+外部类型声明通常是我们使用一些库(比如第三方库)时, 需要的一些类型声明.
+
+两种声明方法:
+1. 在自己库中进行类型声明(编写.d.ts文件), 比如 axios
+2. 在社区的一个公有库 DefinitelyTyped 存放类型声明文件
+ 该库的GitHub地址：https://github.com/DefinitelyTyped/DefinitelyTyped/
+ 该库查找声明安装方式的地址：https://www.typescriptlang.org/dt/search?search=
+ 比如我们安装react的类型声明： npm i @types/react --save-dev

@@ -1,0 +1,25 @@
+{
+  "name": "05_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "webpack serve",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "axios": "^1.2.1",
+    "lodash": "4.17.21"
+  }
+}

@@ -1,0 +1,17 @@
+内置类型声明是 typescript 自带的, 帮助我们内置了 JavaScript 运行时的一些标准化 API 的声明文件
+
+Function
+String
+Math
+Date
+
+也包括运行环境中的 DOM API
+Window
+Document
+
+
+TypeScript 使用模式命名这些声明文件:
+lib.[something].d.ts
+
+
+可以通过 target 和 lib 来决定哪些内置类型声明是可以使用的.
