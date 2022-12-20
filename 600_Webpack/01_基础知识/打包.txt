@@ -1,0 +1,19 @@
+目录下执行 webpack 命令(使用的是全局的)
+webpack
+
+
+通过配置来指定入口和出口
+npx webpack --entry ./src/main.js --output-path ./build
+
+
+创建使用局部的webpack
+1. npm init
+2. npm install webpack webpack-cli -D
+3. npx webpack (使用局部的webapck)
+或者
+3. 在 package.json 创建 script 脚本, 执行脚本打包
+npm run build
+
+"scripts": {
+  "build": "webpack"
+}

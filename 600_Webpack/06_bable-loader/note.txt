@@ -1,0 +1,29 @@
+@babel/core：babel的核心代码，必须安装；
+@babel/cli：可以让我们在命令行使用babel；
+
+npm install @babel/cli @babel/core -D
+
+使用babel来处理我们的源代码：
+src：是源文件的目录；
+--out-dir：指定要输出的文件夹dist；
+
+npx babel src --out-dir dist
+
+
+比如我们需要转换箭头函数，那么我们就可以使用箭头函数转换相关的插件：
+npm install @babel/plugin-transform-arrow-functions -D
+npx babel src --out-dir dist --plugins=@babel/plugin-transform-arrow-functions
+
+处理块级作用域
+npm install @babel/plugin-transform-block-scoping -D
+npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping
+,@babel/plugin-transform-arrow-functions
+
+
+安装@babel/preset-env预设：
+npm install @babel/preset-env -D
+npx babel src --out-dir dist --presets=@babel/preset-env
+
+
+webpack 中使用 babel-loader
+npm install babel-loader -D

@@ -1,0 +1,11 @@
+CleanWebpackPlugin: 打包之前先帮我们删除之前的文件
+npm install clean-webpack-plugin -D
+
+HtmlWebpackPlugin: 将入口文件 index.html 打包进去
+npm install html-webpack-plugin -D
+
+DefinePlugin: 在编译时, 创建配置的全局常量(内置插件)
+
+
+mode: 告知 webpack 使用相应模式的内置优化
+"none" | "development" | "production"

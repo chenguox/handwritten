@@ -1,0 +1,5 @@
+可以创建 webpack.config.js 文件, 在作为 webpack 的配置文件
+
+
+指定配置文件 为 wk.config.js
+webpack --config wk.config.js
