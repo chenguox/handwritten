@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas环形进度条</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    #canvas {
+      background: lightblue;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300">您的浏览器不支持 HTML5 canvas 标签。</canvas>
+<script>
+  let canvas = document.getElementById('canvas')
+  const w = canvas.width
+
+  let ctx = canvas.getContext('2d')
+  let num = 0
+
+  //绘制轨道
+  function drawTrack() {
+    ctx.save()
+    ctx.beginPath()
+    ctx.lineCap = 'round'
+    ctx.lineWidth = 8
+    ctx.strokeStyle = '#e5f1fa'
+    ctx.arc(w / 2, w / 2, w / 2 - 8, 0, 2 * Math.PI)
+    ctx.stroke()
+    ctx.closePath()
+    ctx.restore()
+  }
+
+
+  //绘制进度环
+  function drawProgress(num) {
+    ctx.save()
+    ctx.beginPath()
+    ctx.lineCap = 'round'
+    ctx.lineWidth = 8
+    ctx.strokeStyle = '#2ba0fb'
+    // context.arc(x,y,r,sAngle,eAngle,counterclockwise);   //x坐标,y坐标,半径,起始角,结束角,顺时针/逆时针
+    ctx.arc(w / 2, w / 2, w / 2 - 8, -Math.PI / 2, -Math.PI / 2 + 2 * num / 100 * Math.PI)
+    ctx.stroke()
+    ctx.closePath()
+    ctx.restore()
+  }
+
+
+  let type = 'increment'
+
+  function draw() {
+    if (type === 'increment') {
+      num += 1.2
+      num < 100 ? window.requestAnimationFrame(draw) : num = 100
+    } else if (type === 'decrement') {
+      num -= 1.5
+      num <= 0 ? num = 0 : window.requestAnimationFrame(draw)
+    }
+    ctx.clearRect(0, 0, 300, 300)
+    drawTrack()
+    drawProgress(num)
+  }
+
+  canvas.addEventListener('touchstart', () => {
+    type = 'increment'
+    draw()
+  })
+
+  canvas.addEventListener('touchend', () => {
+    type = 'decrement'
+  })
+
+</script>
+</body>
+</html>
