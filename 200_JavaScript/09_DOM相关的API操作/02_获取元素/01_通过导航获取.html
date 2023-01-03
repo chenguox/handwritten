@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <h2>我是标题</h2>
+      <div class="container">
+        <p>我是段落, <span class="keyword">coderwhy</span> 哈哈哈哈</p>
+        <p>我也是段落, <span class="keyword">kobe</span> 呵呵呵呵额</p>
+
+        <div class="article">
+          <h3 id="title">我是小标题</h3>
+          <p>我是文章的内容, 嘿嘿嘿嘿嘿</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 1. 拿到 body 元素
+      var bodyEl = document.body
+
+      // 2. 拿到 box 元素
+      var boxEl = bodyEl.firstElementChild
+
+      // 3. 拿 container 元素
+      var containerEl = boxEl.children[1]
+
+      // 4. 拿p
+      var pEl = containerEl.children[0]
+
+      // 5. 拿到 keyword
+      var spanEl = pEl.children[0]
+      spanEl.style.color = "red"
+    </script>
+  </body>
+</html>

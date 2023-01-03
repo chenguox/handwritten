@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="abc" class="box" title="box" age="18" height="1.88">我是box</div>
+
+    <input type="checkbox" checked="checked" />
+
+    <script>
+      var boxEl = document.querySelector(".box")
+
+      // 1. 所有的 attribute 都支持的操作
+      // 1.1 hasAttribute 方法
+      console.log(boxEl.hasAttribute("id")) // true
+      console.log(boxEl.hasAttribute("AGE")) // true
+      console.log(boxEl.hasAttribute("abc")) // false
+
+      // 1.2 setAttribute 方法
+      boxEl.setAttribute("aaa", "bbb")
+      boxEl.setAttribute("id", "123")
+
+      // 1.3 removeAttribute 方法
+      boxEl.removeAttribute("height")
+
+      var boxAttributes = boxEl.attributes
+      for (var attr of boxAttributes) {
+        console.log(attr.name, attr.value, typeof attr.value)
+      }
+
+      // 1.4 getAttribute 方法: 该方法获取到的值一定是字符串类型
+      var inputEl = document.querySelector("input")
+      var value = inputEl.getAttribute("checked")
+      console.log(value, typeof value)
+    </script>
+  </body>
+</html>
