@@ -1,0 +1,8 @@
+mac 安装 nginx 
+brew install nginx
+ 
+查看nginx的配置信息
+brew info nginx
+
+查看nginx安装目录
+open /usr/local/etc/nginx/

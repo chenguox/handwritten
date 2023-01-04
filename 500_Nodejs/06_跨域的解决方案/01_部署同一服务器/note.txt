@@ -1,0 +1,5 @@
+pnpm init
+
+pnpm install koa @koa/router
+
+pnpm install koa-static
