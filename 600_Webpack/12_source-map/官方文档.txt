@@ -1,0 +1,4 @@
+https://webpack.docschina.org/configuration/mode/
+
+devtool:
+https://webpack.docschina.org/configuration/devtool#production

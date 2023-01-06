@@ -1,0 +1,1 @@
+// export function sum(num1: number, 怒目)
