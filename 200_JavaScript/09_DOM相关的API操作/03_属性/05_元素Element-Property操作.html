@@ -7,6 +7,60 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <!-- 元素中的属性称之为attribute -->
+  <!-- 标准的attribute在对应的对象模型中都有对应的property -->
+  <div id="abc" class="box" title="标题"
+      age="18" height="1.88">
+    我是box
+  </div>
+
+  <input type="checkbox" checked>
+
+  账号: <input class="account" type="text">
+  <button class="btn">设置input的值</button>
+
+  <script>
+    // 对象中的属性称之为property
+    // var obj = {
+    //   // property
+    //   name: 'cgx'
+    // }
+
+    // 1. 通过 property 获取 attribute 的值
+    // 获取 box 元素
+    var boxEl = document.querySelector('.box')
+    console.log(boxEl.id, boxEl.title, boxEl.age, boxEl.height)
+    // abc 标题 undefined undefined
+
+    // input 元素
+    var inputEl = document.querySelector('input')
+    console.log(inputEl.getAttribute("checked")) // 空
+    // 需要设置 checked = true
+    // if(inputEl.getAttribute("checked")) {
+    //   console.log("checkbox处于选中状态")
+    // }
+    // 使用 property 的方式
+    if (inputEl.checked) {
+      console.log("checkbox 处于选中状态")
+    }
+    console.log(typeof inputEl.checked)
+
+
+    // 2. attribute 和 property 是相互影响的
+    boxEl.id = "aaaa"
+    console.log(boxEl.getAttribute("id"))
+
+    boxEl.setAttribute("title", "哈哈哈")
+    console.log(boxEl.title)
+
+    // 3. 比较特殊的情况, input 设置值(了解)
+    var accountInputEl = document.querySelector(".account")
+    var btnEl = document.querySelector(".btn")
+    btnEl.onclick = function() {
+      accountInputEl.setAttribute("value", "kobe")
+      // 优先级更高
+      accountInputEl.value = "codercgx0"
+    }
+  </script> 
 </body>
 </html>

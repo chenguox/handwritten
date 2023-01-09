@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .countdown {
+        color: #f00;
+        font-size: 20px;
+      }
+
+      .countdown .time {
+        background-color: #f00;
+        color: #fff;
+        display: inline-block;
+        padding: 5px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="countdown">
+      <span class="time hour">03</span>
+      <span class="split">:</span>
+      <span class="time minute">25</span>
+      <span class="split">:</span>
+      <span class="time second">43</span>
+    </div>
+
+    <script src="./js/format.js"></script>
+    <script>
+      // var hours = prompt("请输入多少小时: ")
+      // var minutes = prompt("请输入多少分钟: ")
+      // var seconds = prompt("请输入多少秒:")
+
+      // 1. 获取元素
+      var hourEl = document.querySelector('.hour')
+      var minuteEl = document.querySelector('.minute')
+      var secondEl = document.querySelector('.second')
+
+      // 一整天有24小时
+      var endDate = new Date()
+      endDate.setHours(24)
+      endDate.setMinutes(0)
+      endDate.setSeconds(0)
+      endDate.setMilliseconds(0)
+
+      setInterval(() => {
+        // 距今天结束剩余多少天
+        var nowDate = new Date()
+        var intervalTime = Math.floor(
+          (endDate.getTime() - nowDate.getTime()) / 1000
+        )
+        // console.log(intervalTime)
+
+        // 43324: x小时x分钟x秒钟
+        var hour = Math.floor(intervalTime / 3600)
+        var minute = Math.floor(intervalTime / 60) % 60
+        var second = intervalTime % 60
+
+        hourEl.textContent = formatPadLeft(hour)
+        minuteEl.textContent = formatPadLeft(minute)
+        secondEl.textContent = formatPadLeft(second)
+      }, 1000)
+    </script>
+  </body>
+</html>
