@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      display: flex;
+      width: 200px;
+      height: 200px;
+      background-color: #0f0;
+    }
+
+    .btn {
+      width: 150px;
+      height: 150px;
+      background-color: #00f;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="box">
+    <span class="btn">
+      <button>按钮</button>
+    </span>
+  </div>
+
+  <script>
+    var divEl = document.querySelector(".box")
+    var spanEl = document.querySelector(".btn")
+
+    divEl.onclick = function(event) {
+      console.log(event)
+      // 1. 偶尔会使用
+      console.log("事件类型:", event.type)
+      console.log("事件阶段:", event.eventPhase)
+
+      // 2. 比较少使用
+      console.log("事件元素中位置: ", event.offsetX, event.offsetY)
+      
+    }
+  </script>
+</body>
+</html>
