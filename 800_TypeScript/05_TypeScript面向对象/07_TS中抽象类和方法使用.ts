@@ -1,5 +1,5 @@
 abstract class Shape {
-  // getArea 方法只有声明米有实现体
+  // getArea 方法只有声明没有实现体
   // 实现让子类自己实现
   // 可以将getArea方法定义为抽象方法: 在方法的前面加 abstract
   // 抽象方法必须出现在抽象类中, 类前面也需要加 abstract
