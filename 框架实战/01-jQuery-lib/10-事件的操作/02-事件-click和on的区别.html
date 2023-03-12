@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list" class="panel">
+      <li class="li-1">li-1</li>
+      <li class="li-2">li-2</li>
+      <li class="li-3">li-3</li>
+      <li class="li-4">li-4</li>
+      <li class="li-5">li-5</li>
+    </ul>
+
+    <button class="cancel">取消事件的监听</button>
+
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 使用 on 来监听事件（支持给事件添加命名空间: cgx）
+        // $('ul').on('click.cgx', function () {
+        //   console.log('click1')
+        // })
+
+        // 使用 click 来监听事件
+        // $('ul').click(function () {
+        //   console.log('click2')
+        // })
+
+        // 取消监听可以利用命名空间来针对取消监听事件
+        // $('.cancel').click(function () {
+        //   $('ul').off('click.cgx')
+        // })
+
+        // 1.on 监听的事件支持使用 命名空间
+        // 2.on 函数支持一个 selector 的参数, 用于筛选 可触发事件 的后代元素。
+        $('ul').on('click', '.li-1', function () {
+          console.log('li-1')
+        })
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list" name="cgx" age="17">
+      <li class="li-1">li-1</li>
+      <li class="li-2">li-2</li>
+      <li class="li-3">li-3</li>
+      <li class="li-4">li-4</li>
+      <li class="li-5">li-5</li>
+    </ul>
+
+    <input type="text" />
+
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. 获取 property 属性
+        console.log($('ul').prop('id')) // list
+        console.log($('ul').prop('name')) // undefined
+
+        console.log('%O', document.querySelector('ul'))
+        console.log($('ul').prop('nodeName')) // UL
+        console.log($('ul').prop('nodeType')) // 1
+
+        // 2. 设 property 属性 input
+        // 设置单个属性
+        // $('input').prop('disabled', true)
+        // 设置多个属性
+        $('input').prop({
+          disabled: true,
+          placeholder: '请输入用户名',
+          jQuery_cgx_123: '自定义属性', // 缓存 click data
+        })
+        console.log('%O', document.querySelector('input'))
+
+        // 3. 删除 property 属性
+        // 只能删除 自定义的属性
+        $('input').removeProp('jQuery_cgx_123')
+      })
+    </script>
+  </body>
+</html>

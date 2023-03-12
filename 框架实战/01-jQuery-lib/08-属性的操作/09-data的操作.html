@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list" data-name="cgx" data-age="17">
+      <li class="li-1">li-1</li>
+      <li class="li-2">li-2</li>
+      <li class="li-3">li-3</li>
+      <li class="li-4">li-4</li>
+      <li class="li-5">li-5</li>
+    </ul>
+
+    <script src="../libs/jquery-3.6.0.js"></script>
+
+    <script>
+      $(function () {
+        // 1. 获取 data 的属性
+        console.log($('ul').data())
+
+        // 2. 设置 data 属性
+        // $('ul').data('name', 'codercgx')
+        // console.log($('ul').data())
+        // console.log('%O', document.querySelector('ul'))
+        // 多个 data 值
+        // 调用data()函数只能修改 缓存中的数据
+        $('ul').data({
+          name: 'codercgx',
+          age: '18',
+          height: '1.88',
+        })
+
+        // 3. 删除 data 属性
+        // 只能删除 缓存中的数据
+        $('ul').removeData('name')
+        $('ul').removeData(['name', 'age', 'height'])
+
+        console.log($('ul').data('name'))
+        console.log('%O', $('ul').get(0))
+      })
+    </script>
+  </body>
+</html>

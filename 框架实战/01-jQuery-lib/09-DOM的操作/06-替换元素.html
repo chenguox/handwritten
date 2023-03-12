@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="list" class="panel">
+      <li class="li-1">li-1</li>
+      <li class="li-2">li-2</li>
+      <li class="li-3">li-3</li>
+      <li class="li-4">li-4</li>
+      <li class="li-5">li-5</li>
+    </ul>
+
+    <li class="li-6">li-6</li>
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. 创建一个 span 元素(jQuery对象), 替换掉 li 元素
+        // $('<span>')
+        //   .addClass('content')
+        //   .text('我是span')
+        //   .css('color', 'red')
+        //   .replaceAll('ul li')
+
+        // 2. 将 li 替换为 span 元素， replaceWith(content)
+        var $span = $('<span>').text('我是span')
+        // $('ul li').replaceWith('<span>我是span</span>')
+        $('ul li').replaceWith($span)
+      })
+    </script>
+  </body>
+</html>

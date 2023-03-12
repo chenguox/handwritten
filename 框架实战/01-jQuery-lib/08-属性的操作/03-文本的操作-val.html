@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input class="user" type="text" placeholder="请求输入用户名" />
+    <input class="password" type="text" placeholder="请求输入密码" />
+
+    <button class="login">登录</button>
+    <button class="setUserPas">设置用户名密码</button>
+
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. 获取表单数据
+        // $('.login').on('click', function() {})
+
+        // 简写
+        $('.login').click(function () {
+          console.log($('.user').val())
+          console.log($('.password').val())
+        })
+
+        $('.setUserPas').click(function () {
+          $('.user').val('codercgx')
+          $('.password').val('123456')
+        })
+      })
+    </script>
+  </body>
+</html>

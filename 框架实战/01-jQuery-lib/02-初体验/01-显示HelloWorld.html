@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+      // 需求：在页面上显示 Hello World
+
+      // 1. 原生的方式
+      document.querySelector('body').textContent = 'Hello World'
+
+      // 2. JQuery 的方式
+      var $body = jQuery('body')
+      $body.text('hello jQuery')
+
+      // 3. JQuery 的简写方式
+      $('body').text('hello jQuery')
+    </script>
+  </body>
+</html>

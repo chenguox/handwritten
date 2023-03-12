@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+      .content {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      div
+      <span class="content">span</span>
+    </div>
+
+    <a href="https://www.jd.com">京东商城</a>
+
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. 阻止 a 元素的默认行为
+        $('a').click(function ($event) {
+          console.log($event)
+          $event.preventDefault()
+        })
+
+        // 2. 阻止事件冒泡
+        $('.content').click(function ($event) {
+          console.log('span')
+          $event.stopPropagation()
+        })
+        $('.box').on('click', function () {
+          console.log('div')
+        })
+        $('body').on('click', function () {
+          console.log('body')
+        })
+      })
+    </script>
+  </body>
+</html>

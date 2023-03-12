@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="sub">-</button>
+    <span class="counter">0</span>
+    <button class="add">+</button>
+
+    <script>
+      var subEl = document.querySelector('.sub')
+      var spanEl = document.querySelector('.counter')
+      var addEl = document.querySelector('.add')
+      var counter
+
+      subEl.addEventListener('click', function () {
+        spanEl.innerHTML = --counter
+      })
+
+      addEl.addEventListener('click', function () {
+        addEl.innerHTML = ++counter
+      })
+    </script>
+  </body>
+</html>
