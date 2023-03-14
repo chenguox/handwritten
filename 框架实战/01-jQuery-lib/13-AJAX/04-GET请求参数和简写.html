@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. url 添加查询字符串
+        $.ajax({
+          url: 'http://httpbin.org/get?cityId=404100&keyWord=天河公园',
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 2. 支持在 data 中提交参数
+        $.ajax({
+          url: 'http://httpbin.org/get',
+          data: {
+            cityId: '504100',
+            keyWord: '小蛮腰',
+          },
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 3. 给 GET 请求添加请求头
+        $.ajax({
+          url: 'http://httpbin.org/get',
+          data: {
+            cityId: '504100',
+            keyWord: '小蛮腰',
+          },
+          headers: {
+            // 比如你登录成功之后,后台会返回一个 token
+            accessToken: 'aaaaabbbbbcccccc',
+          },
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 4. get简写
+        $.get('http://httpbin.org/get')
+          .then(function (res) {
+            console.log(res)
+          })
+          .catch(function () {
+            console.log('catch')
+          })
+          .always(function () {
+            console.log('always')
+          })
+      })
+    </script>
+  </body>
+</html>

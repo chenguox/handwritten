@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../libs/jquery-3.6.0.js"></script>
+    <script>
+      $(function () {
+        // 1. 在url中提交查询字符串(比较少见)
+        $.ajax({
+          url: 'http://httpbin.org/post?cityId=404100&keyWord=天河公园',
+          method: 'POST',
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 2. 在data中提交查询字符串
+        $.ajax({
+          url: 'http://httpbin.org/post',
+          method: 'POST',
+          data: {
+            cityId: '504100',
+            keyWord: '小蛮腰',
+          },
+          // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+          // dataType: 'json', // 自动推断, response content-type
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 3. 在 data 中的 json 字符串
+        $.ajax({
+          url: 'http://httpbin.org/post',
+          method: 'POST',
+          data: JSON.stringify({
+            cityId: '504100',
+            keyWord: '小蛮腰',
+          }),
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 4. 在 data 中的 FormData
+        var formData = new FormData()
+        formData.append('cityId', 404100)
+        formData.append('keyWord', '小蛮腰')
+        // formData.append('file', 文件)
+        $.data({
+          url: 'http://httpbin.org/post',
+          method: 'POST',
+          data: formData,
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 5. POST 中添加请求头
+        $.ajax({
+          url: 'http://httpbin.org/post',
+          method: 'POST',
+          data: {
+            cityId: '504100',
+            keyWord: '小蛮腰',
+          },
+          headers: {
+            token: 'sssssssssss',
+          },
+          success: function (res) {
+            console.log(res)
+          },
+        })
+
+        // 6. POST 简写
+        $.post('http://httpbin.org/post', {
+          cityId: '504100',
+          keyWord: '小蛮腰',
+        }).then(function (res) {
+          console.log(res)
+        })
+      })
+    </script>
+  </body>
+</html>

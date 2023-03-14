@@ -1,0 +1,237 @@
+@import './variable.less';
+
+.header {
+  height: @headerHeight;
+  // background-color: darkgrey;
+  background: url('../img/bg_header@1x.jpeg') no-repeat;
+  background-position: center 0;
+}
+
+.header .top-bar {
+  display: flex;
+  padding-top: 34px;
+  margin: 0 50px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    height: 47px;
+    min-width: 184px;
+
+    .logo {
+      width: 95px;
+      height: 34px;
+      background: url('../img/logo.png') no-repeat;
+      background-size: 100% 100%;
+
+      margin: 2px 30px 0 0;
+    }
+
+    .city {
+      display: flex;
+      align-items: center;
+      height: 24px;
+      min-width: 60px;
+      padding: 0 8px;
+      box-sizing: border-box;
+      font-size: 12px;
+      line-height: 28px;
+      border: 2px solid #fff;
+      border-radius: 14px;
+      color: #fff;
+      font-weight: 300;
+    }
+
+    .addr-icon {
+      position: relative;
+      margin-right: 1px;
+      // top: 1px;
+      width: 15px;
+      height: 12px;
+      background-position: -133px -34px;
+    }
+  }
+
+  .right {
+    flex: 1;
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      height: 47px;
+      width: 680px;
+
+      li {
+        margin-left: 20px;
+
+        a {
+          font-size: 16px;
+          color: #fff;
+        }
+      }
+    }
+
+    .login {
+      display: flex;
+      align-items: center;
+
+      .user-icon {
+        margin-right: 10px;
+        width: 26px;
+        height: 26px;
+        background-position: -72px -34px;
+      }
+
+      a,
+      span {
+        line-height: 34px;
+        font-size: 16px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.header .content {
+  .title {
+    margin-top: 116px;
+    text-align: left;
+    color: #fff;
+    .title-small {
+      font-size: 28px;
+      line-height: 28px;
+      height: 28px;
+      margin-bottom: 18px;
+    }
+    .title-big {
+      font-size: 66px;
+      line-height: 68px;
+    }
+  }
+
+  .search-box {
+    margin-top: 36px;
+  }
+
+  .search-menu {
+    position: relative;
+    height: 41px;
+
+    ul {
+      display: flex;
+
+      span {
+        padding-right: 20px;
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+        opacity: 0.5;
+      }
+
+      .item.active span {
+        opacity: 1;
+      }
+    }
+
+    .arrow {
+      position: absolute;
+      top: 31px;
+      left: 42px;
+      transform: translateX(-100%);
+      width: 0;
+      height: 0;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 10px solid #fff;
+      // z-index: 9;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+
+    input {
+      width: 380px;
+      height: 50px;
+      padding-left: 20px;
+
+      border-radius: 4px 0px 0px 4px;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #9399a599;
+        font-weight: 300;
+      }
+    }
+
+    .loc-addr {
+      display: flex;
+      align-items: center;
+      // width: 76px;
+      height: 50px;
+      line-height: 50px;
+      background-color: #fff;
+
+      .location-icon {
+        position: relative;
+        top: 6px;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url(../img/addr.png) no-repeat;
+        background-size: 100% 100%;
+      }
+
+      span {
+        padding-left: 5px;
+        padding-right: 20px;
+        font-size: 16px;
+        color: #666;
+        font-weight: 600;
+      }
+    }
+
+    .search-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 76px;
+      height: 50px;
+      border-radius: 0px 4px 4px 0px;
+      background-color: #3072f6;
+
+      .search-icon {
+        width: 19px;
+        height: 19px;
+        background-position: -98px -34px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .bottom {
+    padding: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+
+    .house-num {
+      display: flex;
+      align-items: center;
+      margin-top: 125px;
+    }
+
+    .trumpet-icon {
+      width: 16px;
+      height: 13px;
+      background-position: -117px -34px;
+      margin-right: 5px;
+    }
+  }
+}
