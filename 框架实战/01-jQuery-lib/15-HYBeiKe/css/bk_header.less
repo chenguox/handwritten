@@ -116,6 +116,7 @@
   }
 
   .search-box {
+    position: relative;
     margin-top: 36px;
   }
 
@@ -212,6 +213,49 @@
         background-position: -98px -34px;
         cursor: pointer;
       }
+    }
+  }
+
+  .search-tips {
+    // 默认隐藏
+    display: none;
+
+    position: absolute;
+    top: 91px;
+    width: 482px;
+    background-color: #fff;
+    z-index: 10;
+
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    // 隐藏滚动条
+    &::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+
+    // border-radius: 4px;
+
+    ul > li {
+      height: 35px;
+      line-height: 35px;
+      padding: 3px 20px;
+      background: #fff;
+      color: #101d37;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        background: #f9f9f9;
+      }
+    }
+
+    ul > li:first-child {
+      background: #f4f7f9;
+      color: #849aae;
     }
   }
 
