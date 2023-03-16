@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../libs/lodash-4.17.21.js"></script>
+    <script>
+      // abc 是否是以 c 结尾
+      console.log(_.endsWith('abc', 'c')) // true
+
+      // abcd 的位置 1 是否是 b
+      console.log(_.endsWith('abcd', 'b', 1)) // false
+      // abcd 的位置 2 是否是 b
+      console.log(_.endsWith('abcd', 'b', 2)) // true
+    </script>
+  </body>
+</html>

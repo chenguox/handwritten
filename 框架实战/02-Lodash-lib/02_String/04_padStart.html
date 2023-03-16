@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../libs/lodash-4.17.21.js"></script>
+    <script>
+      // abc 不满足长度为 6，向左变填充空格
+      console.log(_.padStart('abc', 6)) //    abc
+      // abc 不满足长度为 6，向左变填充指定的字符 +=，多余的=号被截取掉了
+      console.log(_.padStart('abc', 6, '+=')) // +=+abc
+    </script>
+  </body>
+</html>

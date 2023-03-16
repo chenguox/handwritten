@@ -34,14 +34,15 @@
     <script>
       $(function () {
         // 事件的委托
-        // $('ul').on('click', function (event) {
-        //   console.log('%O', event.target)
-        // })
-
-        // 仅仅监听 li 中元素的点击事件（筛选出可触发事件的后代元素）
-        $('ul').on('click', 'li p', function (event) {
+        $('ul').on('click', function (event) {
+          console.log(event)
           console.log('%O', event.target)
         })
+
+        // 仅仅监听 li 中元素的点击事件（筛选出可触发事件的后代元素）
+        // $('ul').on('click', 'li p', function (event) {
+        //   console.log('%O', event.target)
+        // })
       })
     </script>
   </body>

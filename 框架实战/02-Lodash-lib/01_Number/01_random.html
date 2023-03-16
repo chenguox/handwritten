@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../libs/lodash-4.17.21.js"></script>
+    <script>
+      // 1. 获取 0 - 5 之间的随机数
+      console.log(_.random(5))
+
+      // 2. 获取 5 - 10 之间的随机数
+      console.log(_.random(5, 10))
+
+      // 3. 浮点数
+      console.log(_.random(5, true))
+      console.log(_.random(1.2, 5.2))
+    </script>
+  </body>
+</html>

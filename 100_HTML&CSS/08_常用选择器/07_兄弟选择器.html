@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 相邻兄弟选择器 */
+      .box2 + div {
+        color: red;
+      }
+
+      /* 普遍兄弟选择器 */
+      .box2 ~ div {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="box1">我是box1元素</div>
+      <div class="box2">我是box2元素</div>
+      <div class="box3">我是box3元素</div>
+      <div class="box4">我是box4元素</div>
+      <div class="box5">我是box5元素</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 所有的后代 span 元素 */
+      .home span {
+        color: red;
+        font-size: 30px;
+      }
+
+      /* 直接子代选择器（必须是直接自带） */
+      .home > span {
+        background-color: darkgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <span>span1元素</span>
+      <div class="box">
+        <p>p元素</p>
+        <span>span2元素</span>
+      </div>
+
+      <div class="content">
+        <div class="desc">
+          <p>
+            <span>span3元素</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 不会被选中 -->
+    <span>span4元素</span>
+    <div>
+      <span>span5元素</span>
+    </div>
+  </body>
+</html>

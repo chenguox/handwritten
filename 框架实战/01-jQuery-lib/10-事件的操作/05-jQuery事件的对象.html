@@ -39,6 +39,10 @@
           console.log($event) // 是 jQuery的事件对象
           console.log($event.originalEvent) // 拿到原生的事件对象
         })
+
+        $('.box').on('click', function (event) {
+          console.log('mmm', event)
+        })
       })
     </script>
   </body>
