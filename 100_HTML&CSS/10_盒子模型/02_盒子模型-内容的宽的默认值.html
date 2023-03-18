@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1 {
+        height: 50px;
+        background-color: #0f0;
+      }
+
+      .box2 {
+        /* auto 交给浏览器来决定 */
+        width: auto;
+        /* 块级元素的auto独占一行 */
+        height: 50px;
+        background-color: #00f;
+      }
+
+      .box3 {
+        /* 行内级的 auto 与包裹内容有关 */
+        display: inline-block;
+        width: auto;
+        height: 50px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <span class="box3">aaa</span>
+  </body>
+</html>

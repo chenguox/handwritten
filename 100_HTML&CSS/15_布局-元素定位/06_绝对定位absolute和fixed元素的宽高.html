@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 300px;
+        height: 300px;
+        background-image: url(./image/grid.png);
+        position: relative;
+      }
+
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: darkorange;
+
+        /* 绝对定位元素的宽度 */
+        /* left + right + margin-left + margin-right + 自身占用宽度 */
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+
+        /* 绝对定位的高度 */
+        /* top + bottom + margin-top + margin-bottom + 自身占用高度 */
+        top: 50px;
+        bottom: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+  </body>
+</html>

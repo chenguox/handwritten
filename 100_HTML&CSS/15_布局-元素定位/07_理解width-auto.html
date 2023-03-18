@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        width: 300px;
+        height: 150px;
+        background-color: darkgray;
+      }
+
+      span {
+        /* 1. 行内非替换元素 -> 包裹内容 */
+        width: auto;
+        background-color: darkgoldenrod;
+      }
+
+      .box1 {
+        /* 2. 块级元素 -> 包含块的宽度 */
+        width: auto;
+        background-color: darkgreen;
+      }
+
+      .box2 {
+        position: absolute;
+        /* 3. 绝对定位 -> 包裹内容 */
+        width: auto;
+        top: 100px;
+        background-color: darkkhaki;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span>span</span>
+      <div class="box1">div</div>
+      <span class="box2">strong</span>
+    </div>
+  </body>
+</html>

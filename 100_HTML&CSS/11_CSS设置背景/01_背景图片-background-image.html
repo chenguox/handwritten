@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        /* 必须给元素设置具体的宽高, 不然图片不会出来 */
+        width: 300px;
+        height: 300px;
+        background-color: darkgray;
+      }
+
+      .box1 {
+        /* 设置背景 */
+        background-image: url(./image/小熊.jpg);
+        background-repeat: no-repeat;
+      }
+
+      .box2 {
+        /* 设置多个背景, 层叠在下面 */
+        background-image: url(./image/小熊.jpg), url(./image/pic4.jpeg);
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+  </body>
+</html>

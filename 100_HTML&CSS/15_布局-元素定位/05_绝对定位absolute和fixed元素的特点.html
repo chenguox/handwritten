@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        width: 300px;
+        background-color: darkgray;
+      }
+
+      span {
+        position: absolute;
+        /* 特点1: 可以随意设置宽高，默认由内容决定 */
+        /* 特点2: 不再受标准流的约束(排布、块级行内特性) */
+        /* 特点3: 不再给父元素汇报宽高数据  */
+        /* 特点4: 脱标元素内部默认还是按照标准流布局 */
+        width: 150px;
+        height: 250px;
+
+        background-color: darkcyan;
+      }
+
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: darkkhaki;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span>我是span元素</span>
+      <div>我是div元素</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 220px;
+        height: 200px;
+        background-color: darkgray;
+
+        background-image: url(./image/小熊2.jpg);
+        background-repeat: no-repeat;
+        background-size: auto;
+        margin: 10px;
+      }
+
+      .box1 {
+        background-position: 0 0;
+      }
+
+      .box2 {
+        background-position: 20px 50px;
+      }
+
+      .box3 {
+        /* 水平方向，left center right, 另一个值默认 center */
+        /* 以下等价于 left center */
+        background-position: left;
+      }
+
+      .box4 {
+        /* 垂直方向，top center bottom, 另一个值默认 center */
+        background-position: bottom;
+      }
+
+      .box5 {
+        /* 图片居中 */
+        background-position: center;
+      }
+
+      .box6 {
+        background-position: -20px -30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">具体数值（0 0）</div>
+    <div class="box2">具体数值（20px 50px）</div>
+    <div class="box3">水平方向：left center right</div>
+    <div class="box4">垂直方向：top center bottom</div>
+    <div class="box5">居中位置：center</div>
+    <div class="box6">负值（-20px -30px）</div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+
+        border: 10px solid #000;
+      }
+
+      .box1 {
+        /* 具体的值 */
+        border-radius: 20px;
+      }
+
+      .box2 {
+        /* 设置百分比 */
+        border-radius: 10%;
+      }
+
+      .box3 {
+        /* 百分比为 50% 时变为圆形 */
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </body>
+</html>

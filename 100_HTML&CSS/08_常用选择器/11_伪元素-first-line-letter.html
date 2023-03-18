@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 400px;
+        background-color: #f00;
+        color: #fff;
+      }
+
+      /* 不能很好的设置第一行是我们要的属性 */
+      /* .keyword {
+        font-size: 30px;
+        color: orange;
+      } */
+
+      .box::first-line {
+        font-size: 30px;
+        color: orange;
+      }
+
+      .box::first-letter {
+        font-size: 50px;
+        color: darkcyan;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="keyword"
+        >当你在荒废时间，有多少人在拼命。别在最该奋斗的日子，选择了安逸。</span
+      >一个人为什么要努力？
+      我见过最好的答案就是：因为我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美。
+    </div>
+  </body>
+</html>

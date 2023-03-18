@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: darkgray;
+        margin: 10px;
+
+        background-image: url(./image/wall.png);
+      }
+
+      .box1 {
+        /* 默认是上下平铺 */
+        background-repeat: repeat;
+      }
+
+      .box2 {
+        /* 不平铺 */
+        background-repeat: no-repeat;
+      }
+
+      .box3 {
+        /* 只在水平方向平铺 */
+        background-repeat: repeat-x;
+      }
+
+      .box4 {
+        /* 只在垂直方向平铺 */
+        background-repeat: repeat-y;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">平铺</div>
+    <div class="box2">不平铺</div>
+    <div class="box3">水平平铺</div>
+    <div class="box4">垂直平铺</div>
+  </body>
+</html>

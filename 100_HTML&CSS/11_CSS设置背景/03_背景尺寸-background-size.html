@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 250px;
+        height: 200px;
+        background-color: darkgray;
+
+        background-image: url(./image/keai.jpg);
+        background-repeat: no-repeat;
+        margin: 10px;
+      }
+
+      .box1 {
+        background-size: auto;
+      }
+
+      .box2 {
+        background-size: cover;
+      }
+
+      .box3 {
+        background-size: contain;
+      }
+
+      .box4 {
+        /* 指定图片大小 */
+        background-size: 150px 100px;
+      }
+
+      .box5 {
+        background-size: 100% 100%;
+      }
+
+      .box6 {
+        background-size: 200px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">图片默认大小</div>
+    <div class="box2">cover: 缩放至容器全部铺满</div>
+    <div class="box3">contain: 缩放到宽度或高度铺满</div>
+    <div class="box4">指定图片大小(150x100)</div>
+    <div class="box5">百分比(100%x100%)</div>
+    <div class="box6">宽度200px高度自动</div>
+  </body>
+</html>

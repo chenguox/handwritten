@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item::before {
+        content: 'before';
+        color: orange;
+        font-size: 20px;
+      }
+
+      .hot::after {
+        content: url('./hot_icon.svg');
+      }
+
+      .new::after {
+        content: url('./new_icon.svg');
+
+        /* 调整好位置 */
+        position: relative;
+        left: 5px;
+        top: 2px;
+      }
+
+      .box3::after {
+        content: 'hot';
+
+        /* ::after 是一个行内级元素 */
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+
+        color: #fff;
+        font-size: 14px;
+        background-color: orange;
+        padding: 2px;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item hot">我是box1元素</div>
+    <div class="item new">我是box2元素</div>
+
+    <div class="box3">我是box3元素</div>
+  </body>
+</html>
