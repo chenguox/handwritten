@@ -1,0 +1,20 @@
+body {
+  display: flex;
+}
+
+.d-container {
+  width: 120px;
+  height: 120px;
+  background-color: #eee;
+  margin: 10px;
+}
+
+.d-item {
+  width: 35px;
+  height: 35px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  line-height: 35px;
+}

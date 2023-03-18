@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/default.css" />
+    <style>
+      .container1 {
+        display: flex;
+        /* 默认值，左 -> 右 */
+        flex-direction: row;
+      }
+      .container2 {
+        display: flex;
+        /* 右 -> 左 */
+        flex-direction: row-reverse;
+      }
+
+      .container3 {
+        display: flex;
+        /* 上 -> 下 */
+        flex-direction: column;
+      }
+
+      .container4 {
+        display: flex;
+        /* 下 -> 上 */
+        flex-direction: column-reverse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container1 d-container">
+      <div class="item d-item">1</div>
+      <div class="item d-item">2</div>
+      <div class="item d-item">3</div>
+    </div>
+
+    <div class="container2 d-container">
+      <div class="item d-item">1</div>
+      <div class="item d-item">2</div>
+      <div class="item d-item">3</div>
+    </div>
+
+    <div class="container3 d-container">
+      <div class="item d-item">1</div>
+      <div class="item d-item">2</div>
+      <div class="item d-item">3</div>
+    </div>
+
+    <div class="container4 d-container">
+      <div class="item d-item">1</div>
+      <div class="item d-item">2</div>
+      <div class="item d-item">3</div>
+    </div>
+  </body>
+  <script src="./js/itemRandomColor.js"></script>
+</html>
