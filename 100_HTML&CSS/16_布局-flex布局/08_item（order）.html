@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/default.css" />
+
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .box1 {
+        order: 5;
+      }
+
+      .box2 {
+        order: 3;
+      }
+
+      .box3 {
+        order: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container d-container">
+      <div class="item d-item box1">1</div>
+      <div class="item d-item box2">2</div>
+      <div class="item d-item box3">3</div>
+    </div>
+  </body>
+  <script src="./js/itemRandomColor.js"></script>
+</html>

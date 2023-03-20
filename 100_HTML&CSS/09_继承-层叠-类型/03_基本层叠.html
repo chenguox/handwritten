@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div.box {
+        color: red !important; /* 10000 */
+      }
+
+      #main {
+        color: orange; /* id选择器：100 */
+      }
+
+      .box {
+        color: blue; /* 类选择器: 10 */
+      }
+
+      div {
+        color: purple; /* 元素选择器: 1 */
+      }
+
+      * {
+        color: yellow; /* 通配选择器: 0 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" class="box" style="color: blue">我是div元素</div>
+  </body>
+</html>

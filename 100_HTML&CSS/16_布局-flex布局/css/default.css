@@ -1,5 +1,6 @@
 body {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .d-container {
@@ -9,9 +10,15 @@ body {
   margin: 10px;
 }
 
+/* justify-content */
+.d-container {
+  /* width: 250px; */
+  /* height: 180px; */
+}
+
 .d-item {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   font-size: 30px;
   font-weight: bold;
   color: white;
