@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: orange;
+
+        /* 指定执行哪一个关键帧动画 */
+        /* animation-name: moveAnim; */
+        /* 指定动画的持续时间 */
+        /* animation-duration: 2s; */
+        /* 动画执行的次数 infinite 表示无限动画*/
+        /* animation-iteration-count: 2; */
+        /* 指定方向 normal 和 reverse */
+        /* animation-direction: reverse; */
+        /* 执行动画最后保留哪一个值 forwards 最后一帧的位置 */
+        /* animation-fill-mode: forwards; */
+
+        /* js动态修改 */
+        /* animation-play-state: paused; */
+        animation: moveAnim 3s linear 1s infinite normal forwards;
+      }
+
+      @keyframes moveAnim {
+        0% {
+          transform: translate(0, 0) scale(0.5, 0.5);
+        }
+
+        33% {
+          transform: translate(0, 200px) scale(1.2, 1.2);
+        }
+
+        66% {
+          transform: translate(200px, 200px) scale(1, 1);
+        }
+
+        100% {
+          transform: translate(200px, 0) scale(0.5, 0.5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 230px;
+        height: 160px;
+        background-color: darkgray;
+      }
+
+      .wrapper {
+        /* 3. 设置负的margin（没有兼容性） */
+        margin-right: -10px;
+      }
+
+      .item {
+        width: 50px;
+        background-color: darkcyan;
+
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .item.left {
+        height: 80px;
+      }
+
+      .item.right {
+        height: 35px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="wrapper">
+        <div class="item left">1</div>
+        <div class="item left">2</div>
+        <div class="item right">3</div>
+        <div class="item right">4</div>
+        <div class="item right">5</div>
+        <div class="item right">6</div>
+        <div class="item right">7</div>
+        <div class="item right">8</div>
+        <div class="item right">9</div>
+        <div class="item right">10</div>
+      </div>
+    </div>
+  </body>
+</html>

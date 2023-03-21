@@ -1,0 +1,32 @@
+// 01-基本使用
+.nowrap_ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #ff0000 + #00ff00;
+
+  // 混入
+  .nowrap_ellipsis();
+}
+
+// 02-接收变量
+.box_border(@borderWidth: 5px, @borderColor: #f00) {
+  border: @borderWidth solid @borderColor;
+}
+
+.box1 {
+  width: 100px;
+  height: 100px;
+  background-color: #ff0000 + #00ff00;
+
+  // 混入
+  .nowrap_ellipsis();
+  // 不传使用默认值
+  // .box_border()
+  .box_border(10px, #00f);
+}

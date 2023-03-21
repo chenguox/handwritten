@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: inline-block;
+        border: 5px solid #f00;
+        margin: 100px 50px;
+      }
+
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(0, 255, 0, 0.5);
+      }
+
+      .box1 {
+        /* 顺时针 */
+        transform: rotate(45deg);
+      }
+
+      .box2 {
+        /* 逆时针 */
+        transform: rotate(-60deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item box1"></div>
+    </div>
+    <div class="container">
+      <div class="item box2"></div>
+    </div>
+  </body>
+</html>

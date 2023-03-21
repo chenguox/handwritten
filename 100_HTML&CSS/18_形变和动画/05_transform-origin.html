@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: inline-block;
+        border: 5px solid #f00;
+        margin: 50px 50px;
+      }
+
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(0, 255, 0, 0.5);
+      }
+
+      .box1 {
+        /* 修改当前元素的形变的原点位置 */
+        /* 一个值： 设置 x 轴的原点 */
+        transform-origin: 100px;
+        transform: rotate(10deg);
+      }
+
+      .box2 {
+        /* 两个值： 设置 x 轴 和 y 轴的原点 */
+        transform-origin: 0 0;
+        transform: rotate(10deg);
+      }
+
+      .box3 {
+        /* 关键字 */
+        transform-origin: top left;
+        transform: rotate(10deg);
+      }
+
+      .box4 {
+        /* 百分比：相对自身 */
+        transform-origin: 50% 50%;
+        transform: rotate(10deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item box1"></div>
+    </div>
+
+    <div class="container">
+      <div class="item box2"></div>
+    </div>
+
+    <div class="container">
+      <div class="item box3"></div>
+    </div>
+
+    <div class="container">
+      <div class="item box4"></div>
+    </div>
+  </body>
+</html>

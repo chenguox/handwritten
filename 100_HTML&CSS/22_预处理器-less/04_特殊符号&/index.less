@@ -1,0 +1,19 @@
+@mainColor: #a40011; // 主要颜色
+
+.list {
+  .item {
+    font-size: 20px;
+
+    &:hover {
+      color: @mainColor;
+    }
+
+    &:nth-child(1) {
+      color: orange;
+    }
+
+    &:nth-child(2) {
+      color: #00f;
+    }
+  }
+}

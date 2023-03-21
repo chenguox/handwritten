@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        background-color: darkgrey;
+        height: 220px;
+        /* line-height: 设置一行文本的高度(一个行盒的高度) */
+        line-height: 220px;
+      }
+
+      img {
+        /* 在当前的行盒中,  */
+        vertical-align: middle;
+      }
+
+      span {
+        display: inline-block;
+        width: 100px;
+        height: 160px;
+        background-color: darkorange;
+
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      我是普通的文本
+      <img src="./小熊2.jpg" alt="" />
+      <span>我是span元素</span>
+    </div>
+  </body>
+</html>

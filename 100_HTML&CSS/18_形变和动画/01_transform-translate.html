@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: inline-block;
+        border: 5px solid #f00;
+        margin-right: 100px;
+      }
+
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+      }
+
+      .box1 {
+        /* 一个值：x轴 */
+        transform: translate(80px);
+      }
+
+      .box2 {
+        /* 两个值： x轴和y轴 */
+        background-color: skyblue;
+        transform: translate(50px, 50px);
+      }
+
+      .box3 {
+        /* 百分比: 你的百分比是相对于谁? */
+        /* 不同地方的百分比相对参照物是不一样 */
+
+        /* traslate的百分比是相对于自身的 */
+        /* 如果设置的x位移: 那么参考的是自身的宽度 */
+        /* 如果设置的y位移: 那么参考的是自身的高度 */
+        transform: translate(50%, 50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item box1"></div>
+    </div>
+    <div class="container">
+      <div class="item box2"></div>
+    </div>
+    <div class="container">
+      <div class="item box3"></div>
+    </div>
+  </body>
+</html>
