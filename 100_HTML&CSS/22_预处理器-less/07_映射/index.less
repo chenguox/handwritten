@@ -10,4 +10,20 @@
   background-color: #f00;
 }
 
-// 02-接收变量
+// 02-混入结合映射
+// 混入可以当做自定义函数来使用
+@htmlFontSize: 20px;
+
+html {
+  font-size: @htmlFontSize;
+}
+
+.pxToRem(@px) {
+  result: (@px / @htmlFontSize) * 1rem;
+}
+
+.box2 {
+  width: .pxToRem(120) [result];
+  font-size: .pxToRem(15) [result];
+  background-color: darkgrey;
+}
